@@ -11,15 +11,23 @@ ul#chat li span {
     margin-right: 10px;
 }
 
+/* Navbar icons */
+#nav-chat .ui-icon,
 #nav-chat .ui-icon {
     background-attachment: scroll;
     background-clip: border-box;
     background-color: transparent;
-    background-image: url("/images/icons-glyphish/09-chat-2.png");
     background-origin: padding-box;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: 24px 22px;
+}
+
+#nav-chat .ui-icon {
+    background-image: url("/images/icons-glyphish/09-chat-2.png");
+}
+#nav-users .ui-icon {
+    background-image: url("/images/icons-glyphish/112-group.png");
 }
 
 .navigation .ui-btn .ui-icon {
@@ -28,3 +36,5 @@ ul#chat li span {
     margin-left: -15px !important;
     width: 30px !important;
 }
+
+

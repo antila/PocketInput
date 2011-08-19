@@ -6,6 +6,7 @@ based games using Websockets and other HTML5 technologies.
 * Node.js (included) - http://nodejs.org/
 * Socket.io (included) - http://socket.io/
 * jQuery Mobile (included) - http://jquerymobile.com/
+* Glyphish (included) http://glyphish.com/
 
 # Features
 * Android Browser support
@@ -14,6 +15,7 @@ based games using Websockets and other HTML5 technologies.
 * IOS Browser
 
 # License
+* Glyphish: Icons by Joseph Wain / glyphish.com. Licensed under the Creative Commons Attribution 3.0 United States License.
 
 ### MIT License
 

@@ -8,6 +8,9 @@ var express = require('express');
 var app = module.exports = express.createServer();
 var io = require('socket.io').listen(app);
 
+var jade = require('jade');
+
+
 // Configuration
 
 app.configure(function(){
@@ -17,6 +20,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+
 });
 
 app.configure('development', function(){
@@ -28,10 +32,9 @@ app.configure('production', function(){
 });
 
 // Routes
-
 app.get('/', function(req, res){
-  res.render('index', {
-    title: 'Websockets playground'
+  res.render('index.jade', {
+    title: 'PocketInput'
   });
 });
 

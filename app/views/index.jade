@@ -1,18 +1,7 @@
 div(data-role='page', id='root')
 
 div(data-role='page', id='hub')
-    div(data-role='header')
-        a(href='#options', data-icon='gears')#button-options='Options'
-        h1=title
-        a(href='#logout', data-icon='delete')#button-logout='Logout'
-    div(data-role='footer', class="navigation")
-        div(data-role='navbar', role='navigation', data-grid='d', class="navigation")
-            ul
-                li
-                    a(href='#hub', class='ui-btn-active', data-icon='custom', data-theme='a')#nav-chat='Chat'
-                li
-                    a(href='#users', data-icon='custom', data-theme='a')#nav-users='Users'
-
+    !=partial('partials/hub-header')
     div(data-role='content', id='chat')
         form
             fieldset(data-role='fieldcontain')
@@ -21,32 +10,35 @@ div(data-role='page', id='hub')
                 input(type="submit", value="Chat")#sendchat
     ul#chat(data-role='listview', data-inset='true', data-theme='g')
     
-    
 div(data-role='page', id='users')
-    div(data-role='header')
-        a(href='#options', data-icon='gears')#button-options='Options'
-        h1=title
-        a(href='#logout', data-icon='delete')#button-logout='Logout'
-    div(data-role='footer', class="navigation")
-        div(data-role='navbar', role='navigation', data-grid='d', class="navigation")
-            ul
-                li
-                    a(href='#hub', class='ui-btn-active', data-icon='custom', data-theme='a')#nav-chat='Chat'
-                li
-                    a(href='#users', data-icon='custom', data-theme='a')#nav-users='Users'
+    !=partial('partials/hub-header')
     p="USERS!"
-    
    
 div(data-role='page', id='login-page')
     div(data-role='header')
-        h1='title'
+        h1=title
         
     div(data-role='content', id='login-content')
-        
-            form#loginform
-                div#loginform
-                fieldset(data-role='fieldcontain')
-                    label(for='nickname')='Nickname:'
-                    input(type="text", value="")#nickname
-                input(type="submit", value="Login")#login
-        
+        form#loginform
+            div#loginform
+            fieldset(data-role='fieldcontain')
+                label(for='nickname')='Nickname:'
+                input(type="text", value="")#nickname
+            input(type="submit", value="Login")#login
+        form#startserver
+            div#serverform
+            input(type="submit", value="Start Server")#button-startserver
+      
+div(data-role='page', id='page-options')
+    div(data-role='header')
+        h1='Options'
+    div(data-role='content')
+        p='Hello'
+
+div(data-role='page', id='server-hub')
+    div(data-role='header')
+        h1='Server'
+        a(href='#logout', data-icon='delete')#button-logout='Stop Server'
+    div(data-role='content')
+        p='Hello'
+        partial('comment', { collection: comments });

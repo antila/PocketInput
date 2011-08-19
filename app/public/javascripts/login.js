@@ -4,7 +4,8 @@ function Login(socket)
 }
 
 $(document).bind('pagecreate',function(event){
-  $('#login-page').submit(function(data){
+  // Login
+  $('#loginform').submit(function(data){
     if ($('#nickname').val() !== '') {
       // Accepted username
       var username = $('#nickname').val();
@@ -18,5 +19,12 @@ $(document).bind('pagecreate',function(event){
     //console.log(data);
     return false;
   });
+  
+  $('#startserver').submit(function(data){
+    $.server = new Server();
+    return false;
+  });
+  
+  // Start server
 });
 

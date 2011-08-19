@@ -34,7 +34,9 @@ app.configure('production', function(){
 // Routes
 app.get('/', function(req, res){
   res.render('index.jade', {
-    title: 'PocketInput'
+    header: '#Header#',
+    title: 'PocketInput',
+    games: 'hej'
   });
 });
 
@@ -82,6 +84,16 @@ io.sockets.on('connection', function (socket) {
       socket.broadcast.emit('chat', { message: data.message, name: username });
   });
 
+/* SERVER
+ */
+  socket.on('server start', function (data) {
+    console.log('Started server');
+    /*socket.set('nickname', data, function () {
+      console.log(data);
+    });
+    console.log('done');*/
+    socket.emit('server start okay');
+  });
   
   
 });

@@ -3,9 +3,15 @@ PocketInput is a framework for using your phone as a controler for web
 based games using Websockets and other HTML5 technologies. 
 
 # Dependencies
+<<<<<<< HEAD
 * Node.js
 * Socket.io
 * jQuery UI Mobile
+=======
+* Node.js (included) - http://nodejs.org/
+* Socket.io (included) - http://socket.io/
+* jQuery Mobile (included) - http://jquerymobile.com/
+>>>>>>> a0cf7c348bbbf4e18b9eca437a5862c36bf8f311
 
 # Features
 * Android Browser support

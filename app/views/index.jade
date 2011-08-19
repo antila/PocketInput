@@ -1,0 +1,49 @@
+div(data-role='page', id='root')
+
+div(data-role='page', id='hub')
+	div(data-role='header')
+		a(href='#options', data-icon='gears')#button-options='Options'
+		h1=title
+		a(href='#logout', data-icon='delete')#button-logout='Logout'
+	div(data-role='content', id='chat')
+		form
+			fieldset(data-role='fieldcontain')
+				label(for='chatinput')='Message:'
+				input(type="text", value="")#chatinput
+				input(type="submit", value="Chat")#sendchat
+	ul#chat(data-role='listview', data-inset='true', data-theme='g')
+	div(data-role='footer', class="navigation")
+		div(data-role='navbar', role='navigation', data-grid='d', class="navigation")
+			ul
+				li
+					a(href='#hub', class='ui-btn-active', data-icon='custom', data-theme='a')#nav-chat='Chat'
+				li
+					a(href='#users', data-icon='custom', data-theme='a')#nav-users='Users'
+
+div(data-role='page', id='users')
+	div(data-role='header')
+		a(href='#options', data-icon='gears')#button-options='Options'
+		h1='Users'
+		a(href='#logout', data-icon='delete')#button-logout='Logout'
+	p="USERS!"
+	div(data-role='footer', class="navigation")
+		div(data-role='navbar', role='navigation', data-grid='d', class="navigation")
+			ul
+				li
+					a(href='#hub', data-icon='custom', data-theme='a')#nav-chat='Chat'
+				li
+					a(href='#users', class='ui-btn-active', data-icon='custom', data-theme='a')#nav-users='Users'
+
+div(data-role='page', id='login-page')
+	div(data-role='header')
+		h1=title
+		
+	div(data-role='content', id='login-content')
+		
+			form#loginform
+				div#loginform
+				fieldset(data-role='fieldcontain')
+					label(for='nickname')='Nickname:'
+					input(type="text", value="")#nickname
+				input(type="submit", value="Login")#login
+		

@@ -1,23 +1,24 @@
-function Session(socket)
+function Session()
 {
     this.username = '';
-    this.socket = $.client.socket;
 }
  
 Session.prototype.login = function(y)
 {
   console.log('Session login');
   
-    username = this.getSession();
+  this.username = this.getSession();
     //console.log(session);
     
-    if (username === null || username.length === 0) {
+  if (this.username === null || this.username.length === 0) {
     console.log('no username set');
     var login = new Login();
   } else {
-    console.log('username set: '+username);
-    console.log(username);
-    $.client.socket.emit('set nickname', { name: username });
+    console.log('username set: '+this.username);
+    $.client.connect();
+    
+    //console.log(username);
+    //$.client.socket.emit('set nickname', { name: username });*/
   }
 }
  
@@ -59,18 +60,35 @@ Session.prototype.setSession = function(session)
   }
 }
 
+Session.prototype.getUsername = function()
+{
+  if (this.username !== '' && this.username.length > 0) {
+    return this.username;
+  } else { 
+    if ($('#nickname').length > 0 && $('#nickname').val().length > 0) {
+      return $('#nickname').val();
+    } else {
+      $.mobile.changePage($('#login-page'));
+    }
+  }
+}
+
 Session.prototype.logout = function()
 {
   if (typeof(localStorage) == 'undefined' ) {
     this.showUpgradeNotice();
   } else {
+    console.log('Session: log out');
     localStorage.removeItem("username"); //deletes the matching item from the database
+    
+    $.mobile.changePage($('#logout'));
+    //
   }
 }
 
 Session.prototype.checkLogin = function()
 {
-  console.log('check login');
+  console.log('Sesison: check login');
   if (this.username === '') {
     this.login();
   }

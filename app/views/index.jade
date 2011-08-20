@@ -13,7 +13,10 @@ div(data-role='page', id='hub')
 div(data-role='page', id='users')
     !=partial('partials/hub-header')
     p="USERS!"
-   
+
+div(data-role='page', id='logout')
+  h1='You are now being logged out'
+
 div(data-role='page', id='login-page')
     div(data-role='header')
         h1=title
@@ -40,5 +43,9 @@ div(data-role='page', id='server-hub')
         h1='Server'
         a(href='#logout', data-icon='delete')#button-logout='Stop Server'
     div(data-role='content')
-        p='Hello'
-        partial('comment', { collection: comments });
+      form#games
+          input(type="submit", value="pocketman")#button-pocketman
+      ul#chat(data-role='listview', data-inset='true', data-theme='g')
+
+!=partial('../games/pocketman/client')
+!=partial('../games/pocketman/server')

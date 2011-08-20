@@ -39,6 +39,24 @@ app.get('/', function(req, res){
     games: 'hej'
   });
 });
+app.get('/games/:id/assets/:file', function(req, res){
+    /*res.render('index.jade', {
+    header: '#Header#',
+    title: 'PocketInput',
+    games: 'hej'
+  });*/
+
+  res.sendfile('./games/'+ req.params.id +'/assets/'+ req.params.file, function(err){
+  if (err) {
+    //next(err);
+    console.log(err);
+    res.send('404', 404);
+  } else {
+    console.log('transferred %s', path);
+  }
+});
+});
+
 
 io.sockets.on('connection', function (socket) {
   
@@ -46,10 +64,10 @@ io.sockets.on('connection', function (socket) {
     socket.emit('user disconnected');
   });
   
-  socket.emit('onConnect', { hello: 'socket' });
+  socket.emit('onConnect');
   socket.on('onConnect', function (data) {
-    console.log(data);
-    console.log(socket);
+    //console.log(data);
+    //console.log(socket);
   });
   
   socket.on('onLogin', function (data) {
@@ -83,6 +101,14 @@ io.sockets.on('connection', function (socket) {
       console.log('Chat message ', data.message);
       socket.broadcast.emit('chat', { message: data.message, name: username });
   });
+  socket.on('sendInput', function (data) {
+      socket.get('nickname', function (err, data) {
+        if (data && data.hasOwnProperty('name')) {          
+          username = data.name;
+        }
+      });
+      socket.broadcast.emit('playerInput', { input: data.input, nickname: username });
+  });
 
 /* SERVER
  */
@@ -93,6 +119,13 @@ io.sockets.on('connection', function (socket) {
     });
     console.log('done');*/
     socket.emit('server start okay');
+  });
+  
+  socket.on('startGame', function (data) {
+    console.info('\nstartGame: '+data.game);
+
+    socket.broadcast.emit('goToGame', {game: data.game });
+    socket.emit('goToGame', {game: data.game });
   });
   
   

@@ -1,42 +1,111 @@
-$.client = {};
-$.client.socket = io.connect('/');
-$.client.session = new Session($.client.socket);
+$.client = new Client();
+
+function Client()
+{
+ 
+}
+
+Client.prototype.game = '';
+
+Client.prototype.connect = function() {
+
+  this.socket = io.connect();
+  this.session = new Session(this.socket);
   
-$.client.socket.on('news', function (data) {
-  console.log(data);
-  $.client.socket.emit('my other event', { my: 'data' });
-});
+  // Events
+  this.socket.on('goToGame', function (data) {
+    console.log('Client: go to game');
+    //console.log(data);
+    $.client.addChatMessage('Client', 'Go to game: ');
+    //$.mobile.changePage($('#server-hub'));
+  });
 
-$.client.socket.on('nickname okay', function (data) {
-  console.log('Nickname okay!');
-  console.log(data);
-  console.log($.client.session);
+  this.socket.on('nickname okay', function (data) {
+    console.log('Nickname okay!');
+    console.log(data);
+    console.log($.client.session);
 
-  console.log($.client.session.setSession({name: data.name}));
-  console.log('Opening page: hub');
-  $.mobile.changePage($('#hub'));
-});
+    console.log($.client.session.setSession({name: data.name}));
+    console.log('Opening page: hub');
+    $.mobile.changePage($('#hub'));
+  });
 
-$.client.socket.on('nickname failed', function (data) {
-  console.log('Nickname failed!');
+  this.socket.on('nickname failed', function (data) {
+    console.log('Nickname failed!');
+      
+    //$.client.session.login();
+  });
+
+  this.socket.on('chat', function (data) {
+    console.log(data);
+    $.client.addChatMessage(data.name, data.message);
+  });
+
+  this.socket.on('onConnect', function (data) {
+    console.log('received onconnect');
+    $.client.onConnect();
+  });
+  
+  this.socket.on('goToGame', function (data) {
+    console.log('Go to game');
+    console.log(data);
     
-  $.client.session.login();
-});
+    if ($('#game-client-'+data.game).length > 0) {
+      $.mobile.changePage($('#game-client-'+data.game));
+      this.game = new PocketmanClient();
+    } else {
+      console.log('No such game: '+data.game);
+    }
+    //$.mobile.changePage($('#server-hub'));
+  });
+}
 
-$.client.socket.on('chat', function (data) {
-  console.log(data);
-  addChatMessage(data.name, data.message);
-});
+Client.prototype.addChatMessage = function(name, message) {
+  var item = $('ul#chat').append('<li><span>'+name+'</span>'+message+'</li>');
+  $('ul#chat li:last').addClass('ui-li ui-li-static ui-body-c');
+}
 
-$.client.socket.on('onConnect', function (data) {
+Client.prototype.sendChatMessage = function(username, usermessage) {
+  console.log('Sending '+username+' from '+usermessage);
+  this.addChatMessage(username, usermessage);
+  this.socket.emit('msg', { message: usermessage });
+}
+
+Client.prototype.sendInput = function(input) {
+  this.socket.emit('sendInput', { input: input });
+}
+
+Client.prototype.onConnect = function() {
   console.log('onConnect');
-  console.log(data);
+  
+  var username = $.client.session.getUsername();
+  console.log('Username: '+username);
+  
+  if (username !== '' && username.length > 0) {
+    // Accepted username
+    
+    console.log('Sending username: '+username);
+    $.client.socket.emit('set nickname', { name: username });
+
+  } else {
+    console.log('not accepted');
+    $.mobile.changePage($('#login-page'));
+  }
   //addChatMessage(data.name, data.message);
-});
+}
+
+Client.prototype.session = new Session(this.socket);
+
 
 $('#root').live('pagecreate',function(event){
-  console.log('Document ready');
+  console.log('root: Document ready');
   $.client.session.login();
+  //socket.emit('onConnect', { message: 'usermessage', name: 'username' });
+});
+
+$('#login-page').live('pagecreate',function(event){
+  console.log('login: Document ready');
+  //$.client.session.login();
   //socket.emit('onConnect', { message: 'usermessage', name: 'username' });
 });
 
@@ -44,25 +113,59 @@ $('#hub').live('pagecreate',function(event){
   $('#sendchat').click(function(e){
     var name = $.client.session.username;
     var message = $('#chatinput').val();
-    sendChatMessage(name, message);
+    $.client.sendChatMessage(name, message);
     return false;
   });
    
-    $('#button-logout').click(function(e){
+  $('#button-logout').click(function(e){
     console.log('logout');
-        $.client.session.logout();
+    $.client.session.logout();
   });
     
   $.client.session.checkLogin();
 });
 
-function addChatMessage(name, message) {
-  var item = $('ul#chat').append('<li><span>'+name+'</span>'+message+'</li>');
-  $('ul#chat li:last').addClass('ui-li ui-li-static ui-body-c');
-}
+$('#logout').live('pagecreate',function(event){
+  
+  console.log($.client.socket);
+  
+  if (typeof($.client.socket) === 'undefined' ) {
+    $.mobile.changePage($('#login-page'));
+  } else {
+    window.location.reload();
+  }
+});
 
-function sendChatMessage(username, usermessage) {
-  console.log('Sending '+username+' from '+usermessage);
-  addChatMessage(username, usermessage);
-  $.client.socket.emit('msg', { message: usermessage });
-}
+$(document).bind('pagecreate',function(event){
+  // Login
+  $('#loginform').submit(function(data){
+    
+    if (typeof($.client.socket) !== 'undefined' ) {
+      console.log('Client: Trying to connect while already logged in');
+      $.client.onConnect();
+      return false;
+    } else {
+      console.log('Client: No client, connecting.');
+      $.client.connect();
+      return false;
+    }
+    
+  });
+  
+  $('#startserver').unbind('submit');
+  $('#startserver').submit(function(data){
+    //if (typeof($.server) == 'undefined' ) {
+      $.server.connect();
+    //}
+    return false;
+  });
+  
+  // Start server
+});
+
+$('.game').live('pagecreate',function(event){
+  if (typeof($.server.socket) == 'undefined' ) {
+    $.mobile.changePage($('#hub'));
+  }
+});
+

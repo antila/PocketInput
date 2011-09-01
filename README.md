@@ -8,6 +8,18 @@ based games using Websockets and other HTML5 technologies.
 * jQuery Mobile (included) - http://jquerymobile.com/
 * Glyphish (included) http://glyphish.com/
 
+# Installation
+## Linux/Ubuntu
+* Install NodeJS: https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager/
+* Install NPM (Package manager for Node)
+```
+curl http://npmjs.org/install.sh | sh
+```
+* Install Socket.io
+```
+npm install socket.io
+```
+
 # Features
 * Android Browser support
 

@@ -1,4 +1,3 @@
-
 /*!
  * socket.io-node
  * Copyright(c) 2011 LearnBoost <dev@learnboost.com>
@@ -15,7 +14,7 @@ var client = require('socket.io-client');
  * Version.
  */
 
-exports.version = '0.7.6';
+exports.version = '0.8.6';
 
 /**
  * Supported protocol version.
@@ -32,6 +31,9 @@ exports.clientVersion = client.version;
 /**
  * Attaches a manager
  *
+ * @param {HTTPServer/Number} a HTTP/S server or a port number to listen on.
+ * @param {Object} opts to be passed to Manager and/or http server
+ * @param {Function} callback if a port is supplied
  * @api public
  */
 
@@ -65,7 +67,7 @@ exports.listen = function (server, options, fn) {
   }
 
   // otherwise assume a http/s server
-  return new exports.Manager(server);
+  return new exports.Manager(server, options);
 };
 
 /**
@@ -91,6 +93,14 @@ exports.Transport = require('./transport');
  */
 
 exports.Socket = require('./socket');
+
+/**
+ * Static constructor.
+ *
+ * @api public
+ */
+
+exports.Static = require('./static');
 
 /**
  * Store constructor.

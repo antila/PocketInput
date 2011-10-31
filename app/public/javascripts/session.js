@@ -62,12 +62,13 @@ Session.prototype.setSession = function(session)
 
 Session.prototype.getUsername = function()
 {
-  if (this.username !== '' && this.username.length > 0) {
+  if (this.username && this.username.length > 0) {
     return this.username;
   } else { 
     if ($('#nickname').length > 0 && $('#nickname').val().length > 0) {
       return $('#nickname').val();
     } else {
+      console.log('Opening page: login-page');
       $.mobile.changePage($('#login-page'));
     }
   }
@@ -80,7 +81,8 @@ Session.prototype.logout = function()
   } else {
     console.log('Session: log out');
     localStorage.removeItem("username"); //deletes the matching item from the database
-    
+
+    console.log('Opening page: logout');
     $.mobile.changePage($('#logout'));
     //
   }

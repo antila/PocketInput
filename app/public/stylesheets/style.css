@@ -46,3 +46,17 @@ ul#chat li span {
     position: absolute;
     background: #fff;
 }
+
+.server-only {
+    display: none;
+}
+@media screen and (max-width: 600px) {
+  .server-only {
+    display: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .server-only {
+    display: block;
+  }
+}

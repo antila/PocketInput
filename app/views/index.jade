@@ -16,11 +16,11 @@ div(data-role='page', id='users')
 
 div(data-role='page', id='logout')
   h1='You are now being logged out'
+  a(href='/')='Click here to go back to front page.'
 
 div(data-role='page', id='login-page')
     div(data-role='header')
         h1=title
-        
     div(data-role='content', id='login-content')
         form#loginform
             div#loginform
@@ -28,7 +28,7 @@ div(data-role='page', id='login-page')
                 label(for='nickname')='Nickname:'
                 input(type="text", value="")#nickname
             input(type="submit", value="Login")#login
-        form#startserver
+        form(class='server-only')#startserver
             div#serverform
             input(type="submit", value="Start Server")#button-startserver
       

@@ -27,7 +27,7 @@ Server.prototype.connect = function() {
 
     if ($('#game-server-'+data.game).length > 0) {
       $.mobile.changePage($('#game-server-'+data.game));
-      this.game = new PocketmanServer();
+      this.game = new PocketmanServer(data.users);
     } else {
       console.log('No such game: '+data.game);
     }
@@ -37,7 +37,7 @@ Server.prototype.connect = function() {
     console.log('Server - Got input: '+data.input);
     console.log(data);
 
-    this.game.onInput(data.input);
+    this.game.onInput(data.nickname, data.input);
   });
 }
  

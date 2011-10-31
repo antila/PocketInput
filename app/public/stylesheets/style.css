@@ -36,3 +36,13 @@ ul#chat li span {
     margin-left: -15px !important;
     width: 30px !important;
 }
+
+#play {
+    width: 640px;
+    height: 480px;
+    background: #666;
+}
+#play div {
+    position: absolute;
+    background: #fff;
+}

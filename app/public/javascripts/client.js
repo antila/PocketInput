@@ -81,7 +81,7 @@ Client.prototype.onConnect = function() {
   var username = $.client.session.getUsername();
   console.log('Username: '+username);
   
-  if (username !== '' && username.length > 0) {
+  if (username && username !== '' && username.length > 0) {
     // Accepted username
     
     console.log('Sending username: '+username);

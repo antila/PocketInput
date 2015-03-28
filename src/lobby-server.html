@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>phaser</title>
+
+  <!-- build:css main.min.css -->
+  <link rel="stylesheet" href="css/main.css"> 
+  <!-- /build -->
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="js/lib/jquery-1.11.2.min.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+
+<style type="text/css">
+  body {
+    margin-top: 60px;
+  }
+</style>
+
+</head>
+
+<body>
+
+  <!-- build:remove -->
+  <!--<script src="http://localhost:35729/livereload.js"></script>  -->
+  <!-- /build -->
+ 
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+<!--         <div class="navbar-header">
+          <a class="navbar-brand" href="#">Project name</a>
+        </div> -->
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/lobby-server.html" clientDestination="/lobby-client.html">Lobby</a></li>
+            <li><a href="games/invaders/invaders-server.html" clientDestination="games/invaders/invaders-client.html">Game</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1>Connected players:</h1>
+      <ul id="players">
+        <li>No players</li>
+      </ul>
+    </div><!-- /.container -->
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/server.js"></script>
+
+</body>
+</html>

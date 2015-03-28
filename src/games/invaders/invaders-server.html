@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>phaser</title>
+
+  <!-- build:css main.min.css -->
+  <link rel="stylesheet" href="/css/main.css"> 
+  <!-- /build -->
+
+  <script src="/js/lib/jquery-1.11.2.min.js"></script>
+</head>
+
+<body>
+  <div id="phaser-game" class="game"></div>
+
+  <!-- build:remove -->
+  <!--<script src="http://localhost:35729/livereload.js"></script>  -->
+  <!-- /build -->
+
+  <!-- build:js phaser.min.js-->
+  <script src="/js/lib/phaser.min.js"></script>
+  <!-- /build -->
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/games/invaders/invaders-server.js"></script>
+  <script src="/js/server.js"></script>
+</body>
+</html>
+

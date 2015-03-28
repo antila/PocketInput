@@ -18,7 +18,7 @@ app.use(express.static('src'));
 var users = [];
 var lastHighscore;
 
-var games = ['invaders', 'example'];
+var games = ['invaders', 'example', 'coinhunter'];
 var votes = {};
 
 io.on('connection', function (socket) {

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>phaser</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+
+  <!-- build:css main.min.css -->
+  <link rel="stylesheet" href="/css/main.css"> 
+  <!-- /build -->
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="/js/lib/jquery-1.11.2.min.js"></script>
+<script src="/js/lib/bootstrap.min.js"></script>
+
+<style type="text/css">
+body, html{
+  margin: 0;
+  padding: 0;
+  background: #000;
+}
+  #container {
+    background: #555;
+  }
+  #button {
+    background: #444;
+  }
+  #container,
+  #button {
+    display: inline-block;
+    width: 49%;
+    height: 100vh;
+    font-size: 40px;
+    line-height: 100vh;
+    text-align: center;
+    color: #fff;
+  }
+  h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events:none;
+  }
+</style>
+
+</head>
+
+<body class="client">
+  <!-- build:remove -->
+  <!--<script src="http://localhost:35729/livereload.js"></script>  -->
+  <!-- /build -->
+  <div id="container">joystick</div>
+  <div id="button">shoot</div>
+  <h1>username</h1>
+ 
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/lib/virtualjoystick.js"></script>
+  <script src="/games/coinhunter/coinhunter-client.js"></script>
+  <script src="/js/client.js"></script>
+</body>
+</html>

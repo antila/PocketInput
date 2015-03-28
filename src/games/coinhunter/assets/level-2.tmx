@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="29" height="15" tilewidth="64" tileheight="64" nextobjectid="101">
+ <tileset firstgid="1" name="functions" tilewidth="64" tileheight="64">
+  <image source="../../aaa/functions.png" width="256" height="64"/>
+ </tileset>
+ <tileset firstgid="5" name="tiles" tilewidth="64" tileheight="64">
+  <image source="../../aaa/tiles.png" width="640" height="640"/>
+ </tileset>
+ <tileset firstgid="105" name="coin" tilewidth="32" tileheight="32">
+  <image source="../../sprites/coin.png" width="192" height="32"/>
+ </tileset>
+ <layer name="Background" width="29" height="15">
+  <data encoding="csv">
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+</data>
+ </layer>
+ <layer name="Walls" width="29" height="15">
+  <data encoding="csv">
+7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,
+7,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,7,
+7,0,6,0,6,6,0,6,0,6,6,0,6,6,0,6,0,6,0,6,0,6,6,0,6,0,6,0,7,
+7,0,0,0,0,6,0,0,0,0,6,0,6,0,0,6,0,0,0,6,0,0,6,0,6,0,0,0,7,
+7,0,6,6,0,6,0,6,6,0,6,0,0,0,6,6,0,6,0,6,6,0,0,0,0,0,6,0,7,
+7,0,6,0,0,0,0,0,0,0,0,0,6,0,0,0,0,6,0,0,0,0,6,6,0,6,6,0,7,
+7,0,0,0,6,0,6,6,6,0,6,6,6,0,6,0,6,6,0,6,6,0,0,0,0,0,6,0,7,
+7,0,6,0,6,0,6,0,0,0,6,0,0,0,6,0,0,0,0,0,6,0,6,6,6,0,0,0,7,
+7,0,6,0,6,0,0,0,6,0,0,0,6,0,0,0,6,0,6,0,6,0,6,0,0,0,6,0,7,
+7,0,0,0,0,0,6,6,6,0,6,0,6,0,6,6,6,0,6,0,0,0,0,0,6,6,6,0,7,
+7,0,6,6,6,0,0,0,6,0,6,0,6,0,0,0,6,0,0,0,6,6,6,0,0,0,6,0,7,
+7,0,0,0,6,0,6,0,0,0,0,0,0,0,6,0,0,0,6,0,0,0,0,0,6,0,0,0,7,
+7,0,6,0,6,0,6,6,0,6,0,6,0,6,6,0,6,0,6,6,6,0,6,6,6,0,6,0,7,
+7,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,7,
+7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+</data>
+ </layer>
+ <objectgroup name="Items">
+  <object id="2" name="coin" gid="105" x="593" y="240"/>
+  <object id="7" name="coin" gid="105" x="593" y="368"/>
+  <object id="8" name="coin" gid="105" x="721" y="368"/>
+  <object id="9" name="coin" gid="105" x="849" y="240"/>
+  <object id="10" name="coin" gid="105" x="977" y="432"/>
+  <object id="11" name="coin" gid="105" x="1041" y="304"/>
+  <object id="12" name="coin" gid="105" x="721" y="496"/>
+  <object id="13" name="coin" gid="105" x="849" y="560"/>
+  <object id="16" name="coin" gid="105" x="401" y="240"/>
+  <object id="17" name="coin" gid="105" x="401" y="368"/>
+  <object id="18" name="coin" gid="105" x="721" y="624"/>
+  <object id="19" name="coin" gid="105" x="785" y="816"/>
+  <object id="20" name="coin" gid="105" x="977" y="688"/>
+  <object id="21" name="coin" gid="105" x="1105" y="624"/>
+  <object id="22" name="coin" gid="105" x="849" y="752"/>
+  <object id="23" name="coin" gid="105" x="977" y="880"/>
+  <object id="24" name="coin" gid="105" x="657" y="752"/>
+  <object id="25" name="coin" gid="105" x="657" y="880"/>
+  <object id="26" name="coin" gid="105" x="465" y="496"/>
+  <object id="27" name="coin" gid="105" x="593" y="496"/>
+  <object id="28" name="coin" gid="105" x="465" y="688"/>
+  <object id="29" name="coin" gid="105" x="593" y="688"/>
+  <object id="30" name="coin" gid="105" x="1105" y="752"/>
+  <object id="31" name="coin" gid="105" x="1233" y="688"/>
+  <object id="32" name="coin" gid="105" x="1233" y="496"/>
+  <object id="33" name="coin" gid="105" x="1361" y="432"/>
+  <object id="34" name="coin" gid="105" x="401" y="112"/>
+  <object id="35" name="coin" gid="105" x="529" y="112"/>
+  <object id="64" name="coin" gid="105" x="1297" y="240"/>
+  <object id="65" name="coin" gid="105" x="1489" y="176"/>
+  <object id="68" name="coin" gid="105" x="1617" y="304"/>
+  <object id="69" name="coin" gid="105" x="1169" y="880"/>
+  <object id="70" name="coin" gid="105" x="1361" y="752"/>
+  <object id="71" name="coin" gid="105" x="977" y="560"/>
+  <object id="72" name="coin" gid="105" x="849" y="368"/>
+  <object id="73" name="coin" gid="105" x="1169" y="240"/>
+  <object id="74" name="coin" gid="105" x="1041" y="112"/>
+  <object id="75" name="coin" gid="105" x="785" y="112"/>
+  <object id="76" name="coin" gid="105" x="273" y="304"/>
+  <object id="77" name="coin" gid="105" x="209" y="432"/>
+  <object id="78" name="coin" gid="105" x="209" y="624"/>
+  <object id="79" name="coin" gid="105" x="81" y="496"/>
+  <object id="80" name="coin" gid="105" x="209" y="752"/>
+  <object id="81" name="coin" gid="105" x="529" y="880"/>
+  <object id="82" name="coin" gid="105" x="337" y="816"/>
+  <object id="83" name="coin" gid="105" x="337" y="432"/>
+  <object id="85" name="coin" gid="105" x="337" y="560"/>
+  <object id="86" name="coin" gid="105" x="81" y="688"/>
+  <object id="87" name="coin" gid="105" x="145" y="240"/>
+  <object id="88" name="coin" gid="105" x="1233" y="112"/>
+  <object id="89" name="coin" gid="105" x="1617" y="752"/>
+  <object id="90" name="coin" gid="105" x="1425" y="880"/>
+  <object id="91" name="coin" gid="105" x="1745" y="624"/>
+  <object id="92" name="coin" gid="105" x="1745" y="368"/>
+  <object id="93" name="coin" gid="105" x="1553" y="432"/>
+  <object id="94" name="coin" gid="105" x="1425" y="304"/>
+  <object id="95" name="coin" gid="105" x="1489" y="688"/>
+  <object id="96" name="coin" gid="105" x="1361" y="624"/>
+  <object id="97" name="coin" gid="105" x="1617" y="560"/>
+  <object id="98" name="coin" gid="105" x="1233" y="368"/>
+  <object id="99" name="coin" gid="105" x="1105" y="496"/>
+ </objectgroup>
+</map>

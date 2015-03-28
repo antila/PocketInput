@@ -21,7 +21,7 @@ Game.prototype = {
         { x: 64,    y: 64},
         { x: 128,   y: 64},
         { x: 256,   y: 64},
-        { x: 512,   y: 64}
+        { x: 512,   y: 64},
     ],
 
     create: function () {
@@ -72,6 +72,7 @@ Game.prototype = {
         this.map.addTilesetImage('tiles');
         this.map.setCollisionByExclusion([0], true, "Walls");
 
+        this.bg = this.map.createLayer('Background');
         this.layer = this.map.createLayer('Walls');
         // layer.debug = true;       //  Un-comment this on to see the collision tiles
         this.layer.resizeWorld();
@@ -127,11 +128,37 @@ Game.prototype = {
     },
 
     collectCoin: function (player, coin) {
-        coin.kill();
-        console.log(player.userId);
-        console.log(this.players[player.userId]);
+        coin.destroy();
         this.players[player.userId].score++;
         player.text.setText(this.players[player.userId].name + ": " + this.players[player.userId].score);
+        if (this.coins.length == 0) {
+            this.endGame();
+        }
+    },
+
+    endGame: function() {
+        var winner = {score: 0};
+        var highscore = [];
+        var that = this;
+        Object.keys(this.players).forEach(function(userId) {
+            if (that.players[userId].score > winner.score) {
+                winner = that.players[userId];
+            }
+            highscore.push({
+                userId: userId,
+                score: that.players[userId].score
+            });
+
+        });
+
+        var style = { font: "64px Arial", fill: "#ffffff", align: "center", stroke: '#000000', strokeThickness: 5 };
+        var winnerText = that.add.text(928, 480, "The winner is\n" + winner.name + "\nwith " + winner.score + " points" , style);
+        winnerText.anchor.setTo(0.5, 0.5);
+
+        setTimeout(function() {
+            socket.emit('gameover', highscore);
+        }, 3000); 
+
     },
 
     createPlayer: function(user) {
@@ -151,7 +178,7 @@ Game.prototype = {
         player.facing = "down";
         player.userId = user.userId;
 
-        var style = { font: "24px Arial", fill: "#ffffff", align: "center" };
+        var style = { font: "24px Arial", fill: "#ffffff", align: "center"};
         player.text = this.add.text(288*(Object.keys(this.players).length + 1), 32, user.name + ": 0" , style);
         player.text.anchor.setTo(0.5, 0.5);
 

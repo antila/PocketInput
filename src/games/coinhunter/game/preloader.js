@@ -19,8 +19,9 @@
       
     loadResources: function () {
       // Load levels
-      //this.load.tilemap('level', 'games/coinhunter/assets/level-1.json', null, Phaser.Tilemap.TILED_JSON);
       this.load.tilemap('level', '/games/coinhunter/assets/level-2.json', null, Phaser.Tilemap.TILED_JSON);
+      // Debug Level
+      //this.load.tilemap('level', '/games/coinhunter/assets/level-32.json', null, Phaser.Tilemap.TILED_JSON);
       
       // Load Tiles
       //this.load.image('functions', 'games/coinhunter/assets/functions.png');
@@ -30,8 +31,6 @@
       // Load characters
       this.load.spritesheet('characters', '/games/coinhunter/assets/characters.png', 32, 64);
 
-      // Load fonts
-      this.load.bitmapFont('minecraftia', '/assets/minecraftia.png', '/assets/minecraftia.xml');
     },
 
     create: function () {

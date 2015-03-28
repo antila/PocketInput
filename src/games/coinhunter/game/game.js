@@ -17,7 +17,12 @@ Game.prototype = {
     cursors: null,
     actionButton: null,
     actionTimer: 0,
-
+    spawnpoints: [
+        { x: 64,    y: 64},
+        { x: 128,   y: 64},
+        { x: 256,   y: 64},
+        { x: 512,   y: 64}
+    ],
 
     create: function () {
         var that = this;
@@ -91,7 +96,6 @@ Game.prototype = {
         var that = this;
         var movementSpeed = 100;
 
-        //
         Object.keys(this.players).forEach(function(userId) {
             var player = that.players[userId].player;
             that.game.physics.arcade.collide(player, that.layer);
@@ -124,11 +128,16 @@ Game.prototype = {
 
     collectCoin: function (player, coin) {
         coin.kill();
+        console.log(player.userId);
+        console.log(this.players[player.userId]);
+        this.players[player.userId].score++;
+        player.text.setText(this.players[player.userId].name + ": " + this.players[player.userId].score);
     },
 
     createPlayer: function(user) {
         // Add Players
-        var player = this.game.add.sprite(64, 64, 'characters');
+        var spawnpoint = this.spawnpoints[Object.keys(this.players).length];
+        var player = this.game.add.sprite(spawnpoint.x, spawnpoint.y, 'characters');
         player.tint = Math.random() * 0xffffff;
         this.game.physics.enable(player, Phaser.Physics.ARCADE);
         player.body.collideWorldBounds = true;
@@ -139,17 +148,18 @@ Game.prototype = {
         player.animations.add('left', [9, 10, 11], 10, true);
         player.animations.add('right', [18, 19, 20], 10, true);
         player.animations.add('up', [27, 28, 29], 10, true);
-
         player.facing = "down";
-    
-        var style = { font: "12px Arial", fill: "#ff0044", align: "center" };
-        var text = this.add.text(0, 0, user.name, style);
-        text.anchor.setTo(0.5, 0.5);
+        player.userId = user.userId;
+
+        var style = { font: "24px Arial", fill: "#ffffff", align: "center" };
+        player.text = this.add.text(288*(Object.keys(this.players).length + 1), 32, user.name + ": 0" , style);
+        player.text.anchor.setTo(0.5, 0.5);
 
         this.players[user.userId] = {
             userId: user.userId,
+            name: user.name, 
             player: player,
-            text: text
+            score: 0
         };
     },
 

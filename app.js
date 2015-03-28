@@ -74,7 +74,6 @@ io.on('connection', function (socket) {
       votes[game]++;
     }
 
-    console.log('votes', votes);
     socket.broadcast.emit('votes', votes );
     // socket.emit('votes', votes );
   });

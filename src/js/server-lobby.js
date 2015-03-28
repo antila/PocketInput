@@ -21,13 +21,37 @@ socket.on('votes', function (votes) {
         totalVotes += votes[map];
         var $map = $('<li/>', {text: map+ ': ' + votes[map]}).appendTo($votes);
         $map.attr('data-map', map);
+        $map.attr('data-votes', votes[map]);
     });
+
+    $votes.find('li').sort(asc_sort).appendTo($votes);
+    //$("#debug").text("Output:");
+    // accending sort
+    function asc_sort(a, b){
+        return ($(a).attr('data-votes')) < ($(b).attr('data-votes')) ? 1 : -1;    
+    }
+
+    $('#votecount').text(totalVotes +'/' + users.length);
 
     if (totalVotes >= users.length) {
         var map = $('#votes li:first').attr('data-map');
         $('#navbar a[data-map=' + map + ']').click();
     }
 });
+
+setTimeout(function() {
+    var map = $('#votes li:first').attr('data-map');
+    if (typeof map === 'undefined') {
+        $('#navbar a:last').click();
+    }
+
+    $('#navbar a[data-map=' + map + ']').click();
+}, 10000);
+
+var countDown = 10;
+setInterval(function() {
+    $('#countdown').text(countDown--);
+}, 1000);
 
 socket.on('lastHighscore', function (highscore) {
     if (highscore === null) {

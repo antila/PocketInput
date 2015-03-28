@@ -45,13 +45,19 @@ setInterval(function(){
     });
 }, 1/30 * 1000);
 
-document.getElementById('button').addEventListener('touchstart', function(event) {
+var startShooting = function(event) {
     isShooting = true;
-});
+};
 
-document.getElementById('button').addEventListener('touchend', function(event) {
+var stopShooting = function(event) {
     isShooting = false;
-});
+};
+
+document.getElementById('button').addEventListener('mousedown', startShooting);
+document.getElementById('button').addEventListener('touchstart', startShooting);
+
+document.getElementById('button').addEventListener('mouseup', stopShooting);
+document.getElementById('button').addEventListener('touchend', stopShooting);
 
 $(document).ready(function() {
     $('h1').text(username);

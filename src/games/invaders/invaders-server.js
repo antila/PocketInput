@@ -1,11 +1,9 @@
 
 
 /* Game --------------------------------------------------------------------- */
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-game', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(1024, 576, Phaser.AUTO, 'phaser-game', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
-    game.scale.maxWidth = 800;
-    game.scale.maxHeight = 600;
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.setScreenSize();
 
@@ -23,8 +21,6 @@ var users = [];
 var aliens;
 var bullets;
 var bulletTime = 0;
-var cursors;
-var fireButton;
 var explosions;
 var starfield;
 var score = 0;
@@ -55,6 +51,14 @@ function createPlayer(userId) {
 }
 
 function create() {
+    socket.on('input', function (input) {
+        receiveInput(input);
+    });
+    
+    socket.on('users', function (updateUsers) {
+        updatePlayers(updateUsers);
+    });
+
     game.stage.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -62,7 +66,7 @@ function create() {
     game.stage.disableVisibilityChange = true;
 
     //  The scrolling starfield background
-    starfield = game.add.tileSprite(0, 0, 800, 600, 'starfield');
+    starfield = game.add.tileSprite(0, 0, 1024, 576, 'starfield');
 
     //  Our bullet group
     bullets = game.add.group();
@@ -116,11 +120,6 @@ function create() {
     explosions = game.add.group();
     explosions.createMultiple(30, 'kaboom');
     explosions.forEach(setupInvader, this);
-
-    //  And some controls to play the game with
-    cursors = game.input.keyboard.createCursorKeys();
-    fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    
 }
 
 function createAliens () {
@@ -140,7 +139,7 @@ function createAliens () {
     aliens.y = 50;
 
     //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
-    var tween = game.add.tween(aliens).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    var tween = game.add.tween(aliens).to( { x: 400 }, 3000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
     //  When the tween loops it calls descend
     tween.onLoop.add(descend, this);

@@ -42,7 +42,7 @@ socket.on('votes', function (votes) {
 setTimeout(function() {
     var map = $('#votes li:first').attr('data-map');
     if (typeof map === 'undefined') {
-        $('#navbar a:last').click();
+        $('#navbar a[data-map=example]').click();
     }
 
     $('#navbar a[data-map=' + map + ']').click();

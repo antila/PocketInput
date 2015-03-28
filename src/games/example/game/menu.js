@@ -10,8 +10,8 @@
 
     create: function () {
       // instantly go to game, for development:
-      this.game.state.start('game');
-      return;
+      // this.game.state.start('game');
+      // return;
 
       var that = this;
       var x = this.game.width / 2

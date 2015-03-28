@@ -1,5 +1,3 @@
-var addPlayer;
-
 var userId = localStorage.getItem("userId");
 var username = localStorage.getItem("username");
 if (userId === null) {
@@ -9,33 +7,22 @@ if (userId === null) {
 
 console.log('userId', userId);
 
-var socket = io('http://10.131.6.124');
+var socket = io('http://' + server);
   
 socket.on('connect', function (users) {
     socket.emit('setId', userId);
 
     if (username !== null) {
         socket.emit('setName', { name: username });
-        startGame();
+        if (typeof startGame !== 'undefined') {
+            startGame();
+        }
     }
 });
 
 socket.on('destination', function (destination) {
     window.location = destination;
 });
-
-$('#submit').on('click', function() {
-    var name = $('#username').val();
-    socket.emit('setName', { name: name });
-    localStorage.setItem("username", name);
-    username = localStorage.getItem("username");
-    startGame();
-});
-
-function startGame() {
-    $('#join').hide();
-    $('h1 span').text(username);
-}
 
 function guid() {
     function s4() {

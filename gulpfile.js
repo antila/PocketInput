@@ -7,6 +7,7 @@ var gulp = require('gulp')
   , minifycss = require('gulp-minify-css')
   , minifyhtml = require('gulp-minify-html')
   , processhtml = require('gulp-processhtml')
+  , fileinclude = require('gulp-file-include')
   , jshint = require('gulp-jshint')
   , uglify = require('gulp-uglify')
   , paths;
@@ -29,6 +30,15 @@ gulp.task('copy-assets', ['clean'], function () {
   gulp.src(paths.assets)
     .pipe(gulp.dest(paths.dist + 'assets'))
     .on('error', gutil.log);
+});
+
+gulp.task('fileinclude', function() {
+  gulp.src(['src/**/**.html'])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file',
+    }))
+    .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('serve', function(){
@@ -99,8 +109,9 @@ gulp.task('html', function(){
 
 gulp.task('watch', function () {
   // gulp.watch(paths.js, ['lint']);
+  gulp.watch('**/**.html', ['fileinclude']);
   // gulp.watch(['./src/index.html', paths.css, paths.js], ['html']);
 });
 
-gulp.task('default', ['watch', 'serve']);
+gulp.task('default', ['fileinclude', 'watch', 'serve']);
 gulp.task('build', ['copy-assets', 'copy-vendor', 'uglify', 'minifycss', 'processhtml', 'minifyhtml']);

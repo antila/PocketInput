@@ -12,6 +12,7 @@ console.log(server.address());
 
 server.listen(80);
 
+app.use(express.static('dist'));
 app.use(express.static('src'));
 
 var users = [];

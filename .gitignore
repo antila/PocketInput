@@ -2,4 +2,4 @@
 *.db
 node_modules/
 bower_components/
-
+dist

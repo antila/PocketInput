@@ -10,7 +10,7 @@ $(document).on('click', '#vote li', function() {
 	var game = $(this).text();
 	console.log(game);
     socket.emit('voteGame', game);
-    // $('#vote').hide();
+    $('#vote').hide();
 });
 
 function startGame() {

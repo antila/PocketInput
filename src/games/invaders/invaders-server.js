@@ -192,21 +192,12 @@ function update() {
         }
     });
 
-    // console.log(users);
-    // users.forEach(function(user) {
-    //     console.log('usere!!!!!', user)
-    // });
-
-// console.log(player);
-
-    if (game.time.now > firingTimer && players.length > 0)
-    {
+    if (game.time.now > firingTimer && players.length > 0) {
         enemyFires();
     }
 
     //  Run collision
     game.physics.arcade.overlap(bullets, aliens, collisionHandler, null, this);
-
 }
 
 function render() {
@@ -219,8 +210,9 @@ function render() {
 }
 
 function collisionHandler (bullet, alien) {
-
     //  When a bullet hits an alien we kill them both
+    users[bullet.player.userId].killCount++;
+
     bullet.kill();
     alien.kill();
 
@@ -242,16 +234,27 @@ function collisionHandler (bullet, alien) {
         stateText.text = " You Won, \n Good job";
         stateText.visible = true;
 
-
-        setTimeout(function() {
-            window.location.reload();
-        }, 5000);
-
-
-        //the "click to restart" handler
-        // game.input.onTap.addOnce(restart,this);
+        endGame();
     }
 
+}
+
+function endGame() {
+    console.log('users', users, users.length);
+    var highscore = [];
+
+    Object.keys(users).forEach(function(userId) {
+        var user = users[userId];
+        console.log('user', user, userId);
+        highscore.push({
+            userId: userId,
+            score: user.killCount
+        });
+    });
+
+    setTimeout(function() {
+        socket.emit('gameover', highscore);
+    }, 3000); 
 }
 
 function enemyHitsPlayer (player, bullet) {
@@ -285,10 +288,7 @@ function enemyHitsPlayer (player, bullet) {
         stateText.text=" GAME OVER \n Restarting";
         stateText.visible = true;
 
-        setTimeout(function() {
-            window.location.reload();
-        }, 2000);
-
+        endGame();
         //the "click to restart" handler
         // game.input.onTap.addOnce(restart,this);
     }
@@ -337,6 +337,7 @@ function fireBullet (player) {
     {
         //  Grab the first bullet we can from the pool
         bullet = bullets.getFirstExists(false);
+        bullet.player = player;
 
         if (bullet)
         {
@@ -376,7 +377,9 @@ updatePlayers = function updatePlayers(newUsers) {
     newUsers.forEach(function(user) {
         if (typeof users[user.userId] === 'undefined') {
             console.log('create', user.userId);
-            users[user.userId] = createPlayer(user.userId);
+            users[user.userId] = {};
+            users[user.userId].player = createPlayer(user.userId);
+            users[user.userId].killCount = 0; 
             var style = { font: "12px Arial", fill: "#ff0044", align: "center" };
 
             var t = game.add.text(game.world.centerX-300, 0, user.name, style);
@@ -405,7 +408,7 @@ updatePlayers = function updatePlayers(newUsers) {
 receiveInput = function receiveInput(input) {
     // console.log(input);
 
-    var player = users[input.userId];
+    var player = users[input.userId].player;
     
     player.inputDeltaX = input.deltaX;
     player.inputDeltaY = input.deltaY;
@@ -430,7 +433,7 @@ receiveInput = function receiveInput(input) {
     // player.moveUp = false;
     // player.moveDown = false;
     player.shoot = input.isShooting;
-
+    
     // if(input.key === 'left') {
     //     player.moveLeft = true;
     // }

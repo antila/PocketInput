@@ -42,7 +42,10 @@ gulp.task('fileinclude', function() {
 });
 
 gulp.task('serve', function(){
-  nodemon({'script': 'app.js'});
+  nodemon({
+    'script': 'app.js',
+    'ignore': 'src'
+  });
 }); 
 
 gulp.task('copy-vendor', ['clean'], function () {

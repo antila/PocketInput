@@ -25,6 +25,10 @@ Game.prototype = {
         });
 
         socket.emit('ready');
+
+        setTimeout(function() {
+            that.endGame();
+        }, 10000)
     },
 
     update: function () {
@@ -73,6 +77,23 @@ Game.prototype = {
             }
         });
     },
+
+    endGame: function () {
+        // console.log('users', users, users.length);
+        var highscore = [];
+
+        Object.keys(this.players).forEach(function(userId) {
+            // var player = that.players[userId].player;
+            highscore.push({
+                userId: userId,
+                score: Math.random()
+            });
+        });
+
+        setTimeout(function() {
+            socket.emit('gameover', highscore);
+        }, 3000); 
+    }
 
 };
 

@@ -41,6 +41,10 @@ io.on('connection', function (socket) {
   		socket.broadcast.emit('input', data);
   	});  	
 
+    socket.on('ready', function (data) {
+      socket.emit('users', users);
+    });   
+
   	socket.on('destination', function (data) {
   		socket.emit('destination', data.server);
   		socket.broadcast.emit('destination', data.client);

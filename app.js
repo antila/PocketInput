@@ -75,6 +75,10 @@ io.on('connection', function (socket) {
   });  
 
   socket.on('gameover', function (data) {
+    data.sort(function(a, b){
+      return a.score < b.score;
+    });
+
     lastHighscore = data;
     socket.emit('destination', 'http://' + ip + '/lobby-server.html');
     socket.broadcast.emit('destination', 'http://' + ip + '/lobby-client.html');

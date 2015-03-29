@@ -1,42 +1,39 @@
 @@include('../../_head.html')
 
-<style type="text/css">
-body, html{
-  margin: 0;
-  padding: 0;
-  background: #000;
-}
-  #container {
-    background: #555;
-  }
-  #button {
-    background: #444;
-  }
-  #container,
-  #button {
-    display: inline-block;
-    width: 49%;
-    height: 100vh;
-    font-size: 40px;
-    line-height: 100vh;
-    text-align: center;
-    color: #fff;
-  }
-  h1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events:none;
-  }
-</style>
-  <!-- build:remove -->
-  <!--<script src="http://localhost:35729/livereload.js"></script>  -->
-  <!-- /build -->
+  <style type="text/css">
+    body, html{
+      margin: 0;
+      padding: 0;
+      background: #000;
+    }
+    #container {
+      background: #555;
+    }
+    #button {
+      background: #444;
+    }
+    #container,
+    #button {
+      display: inline-block;
+      width: 49%;
+      height: 100vh;
+      font-size: 40px;
+      line-height: 100vh;
+      text-align: center;
+      color: #fff;
+    }
+    h1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events:none;
+    }
+  </style>
+
   <div id="container">joystick</div>
   <div id="button">shoot</div>
   <h1>username</h1>
  
-  <script src="/socket.io/socket.io.js"></script>
   <script src="/js/lib/virtualjoystick.js"></script>
   <script src="/games/coinhunter/coinhunter-client.js"></script>
   <script src="/js/client.js"></script>

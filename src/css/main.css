@@ -1,4 +1,4 @@
-.client * {
+ .controller {
     -webkit-user-select: none;
     user-select: none;
 }

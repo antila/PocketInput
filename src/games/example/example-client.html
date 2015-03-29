@@ -6,7 +6,7 @@
       padding: 0;
       background: #000;
     }
-    #button {
+    .controller {
       background: #444;
       display: inline-block;
       width: 100%;
@@ -16,16 +16,12 @@
       text-align: center;
       color: #fff;
     }
-    h1 {
-      position: absolute;
-      top: 0;
-      left: 0;
-      pointer-events:none;
+    .button.active {
+      background: #666;
     }
   </style>
 
-  <div id="button">push me</div>
-  <h1>username</h1>
+  <div id="button" class="controller button">push me</div>
  
   <script src="/games/example/example-client.js"></script>
   <script src="/js/client.js"></script>

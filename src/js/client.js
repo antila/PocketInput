@@ -37,3 +37,16 @@ function guid() {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
         s4() + '-' + s4() + s4() + s4();
 }
+
+function addButtonClass() {
+    $(this).addClass('active');
+}
+
+function removeButtonClass() {
+    $(this).removeClass('active');
+}
+
+$('.button').on('mousedown', addButtonClass);
+$('.button').on('touchstart', addButtonClass);
+$('.button').on('mouseup', removeButtonClass);
+$('.button').on('touchend', removeButtonClass);

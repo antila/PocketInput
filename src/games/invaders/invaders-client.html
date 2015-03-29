@@ -9,11 +9,10 @@
     #container {
       background: #555;
     }
-    #button {
+    .button {
       background: #444;
     }
-    #container,
-    #button {
+    .controller {
       display: inline-block;
       width: 49%;
       height: 100vh;
@@ -22,17 +21,13 @@
       text-align: center;
       color: #fff;
     }
-    h1 {
-      position: absolute;
-      top: 0;
-      left: 0;
-      pointer-events:none;
+    .button.active {
+      background: #666;
     }
   </style>
 
-  <div id="container">joystick</div>
-  <div id="button">shoot</div>
-  <h1>username</h1>
+  <div id="container" class="controller">joystick</div>
+  <div id="button" class="controller button">shoot</div>
  
   <script src="/js/lib/virtualjoystick.js"></script>
   <script src="/games/invaders/invaders-client.js"></script>

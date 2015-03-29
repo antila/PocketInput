@@ -59,12 +59,12 @@ setInterval(function() {
     $('#countdown').text(countDown--);
 
     if (countDown < 0) {    
-        var map = $('#votes li:first').attr('data-map');
+        var map = $('#votes tr:first').attr('data-map');
         if (typeof map === 'undefined') {
             window.location.reload();
         }
 
-        $('#navbar a[data-map=' + map + ']').click();
+        gotoGame(map);
     }
 }, 1000);
 

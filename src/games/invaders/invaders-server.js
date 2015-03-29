@@ -379,7 +379,7 @@ updatePlayers = function updatePlayers(newUsers) {
     // Add new users
     newUsers.forEach(function(user) {
         if (typeof users[user.userId] === 'undefined') {
-            console.log('create', user.userId);
+            console.log('create', user.userId, user);
             users[user.userId] = {};
             users[user.userId].player = createPlayer(user.userId);
             users[user.userId].killCount = 0; 

@@ -44,7 +44,7 @@ app.use(express.static('src'));
 var users = [];
 var lastHighscore;
 
-var games = ['invaders', 'example', 'coinhunter'];
+var games = ['invaders', 'example', 'coinhunter', 'skakaburken'];
 
 var votes = {};
 

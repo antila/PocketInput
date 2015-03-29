@@ -120,10 +120,10 @@ Game.prototype = {
             } else {
                 player.animations.play(player.facing);
             }
-            if (player.actionButton && game.time.now > player.actionTimer)
+            if (player.actionButton && that.game.time.now > player.actionTimer)
             {
 
-                player.actionTimer = game.time.now + 750;
+                player.actionTimer = that.game.time.now + 1000;
             }
         });
 

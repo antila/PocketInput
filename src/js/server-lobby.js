@@ -23,7 +23,7 @@ socket.on('users', function (updateUsers) {
 
 socket.on('votes', function (votes) {
     var totalVotes = 0;
-    
+
     var $votes = $('#votes');
     $votes.empty();
 
@@ -50,7 +50,7 @@ socket.on('votes', function (votes) {
 
     if (totalVotes >= users.length) {
         var map = $('#votes tr:first').attr('data-map');
-        $('#navbar a[data-map=' + map + ']').click();
+        gotoGame(map);
     }
 });
 
@@ -94,14 +94,12 @@ socket.on('lastHighscore', function (highscore) {
     });
 });
 
-$('#navbar a').on('click', function(event) {
-    var clientDestination = $(this).attr('clientDestination');
-    var serverDestination = $(this).attr('href');
+function gotoGame(map) {
+    var url = '/games/' + map + '/' + map + '-';
     socket.emit('destination', {
-        client: clientDestination,
-        server: serverDestination
+        client: url + 'client.html',
+        server: url + 'server.html'
     });
-    event.preventDefault();
-});
+}
 
 socket.emit('ready');

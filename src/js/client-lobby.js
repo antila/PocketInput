@@ -7,6 +7,8 @@ $('#submit').on('click', function() {
 });
 
 $(document).on('click', '#vote a', function() {
+    $('#vote .btn-primary').removeClass('btn-primary');
+    $(this).addClass('btn-primary');
 	var game = $(this).text();
 	console.log(game);
     socket.emit('voteGame', {

@@ -288,7 +288,7 @@ function enemyHitsPlayer (player, bullet) {
         // enemyBullets.callAll('kill');
 
     if (players.length === 0) {
-        stateText.text=" GAME OVER \n Restarting";
+        stateText.text=" GAME OVER";
         stateText.visible = true;
 
         endGame();

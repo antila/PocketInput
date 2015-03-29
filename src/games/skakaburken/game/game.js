@@ -60,7 +60,7 @@ Game.prototype = {
 
         this.players[user.userId] = {
             userId: user.userId,
-            userName: user.name,
+            name: user.name,
             player: player,
             meter: 0,
         };

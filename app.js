@@ -76,14 +76,19 @@ io.on('connection', function (socket) {
 
   socket.on('gameover', function (data) {
     lastHighscore = data;
-    socket.emit('destination', '/lobby-server.html');
-    socket.broadcast.emit('destination', '/lobby-client.html');
+    socket.emit('destination', 'http://' + ip + '/lobby-server.html');
+    socket.broadcast.emit('destination', 'http://' + ip + '/lobby-client.html');
+  });    
+
+  socket.on('gotoLobby', function () {
+    socket.emit('destination', 'http://' + ip + '/lobby-server.html');
+    socket.broadcast.emit('destination', 'http://' + ip + '/lobby-client.html');
   });    
 
   socket.on('destination', function (data) {
     votes = {};
-    socket.emit('destination', data.server);
-    socket.broadcast.emit('destination', data.client);
+    socket.emit('destination', 'http://' + ip + data.server);
+    socket.broadcast.emit('destination', 'http://' + ip + data.client);
   });
 
   socket.on('getGames', function () {

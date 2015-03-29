@@ -103,3 +103,5 @@ function gotoGame(map) {
 }
 
 socket.emit('ready');
+
+socket.emit('gotoLobby');

@@ -25,7 +25,10 @@ socket.on('connect', function (users) {
 });
 
 socket.on('destination', function (destination) {
-    window.location = destination;
+    console.log(window.location.href, destination);
+    if (window.location.href !== destination) {
+        window.location = destination;
+    }
 });
 
 function guid() {

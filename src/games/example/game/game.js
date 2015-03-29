@@ -32,6 +32,8 @@ Game.prototype = {
     },
 
     update: function () {
+        stats.begin();
+
         var that = this;
 
         Object.keys(this.players).forEach(function(userId) {
@@ -45,6 +47,8 @@ Game.prototype = {
                 player.scale.y = 1;
             }
         });
+
+        stats.end();
     },
 
     createPlayer: function(user) {

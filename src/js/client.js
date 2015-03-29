@@ -14,9 +14,13 @@ socket.on('connect', function (users) {
 
     if (username !== null) {
         socket.emit('setName', { name: username });
-        if (typeof startGame !== 'undefined') {
-            startGame();
+        if (typeof playerJoined !== 'undefined') {
+            playerJoined();
         }
+    } else {
+        if (typeof joinForm !== 'undefined') {
+            joinForm();
+        }    
     }
 });
 

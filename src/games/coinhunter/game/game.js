@@ -94,6 +94,8 @@ Game.prototype = {
         },
 
     update: function () {
+        stats.begin();
+        
         var that = this;
         var movementSpeed = 100;
 
@@ -125,6 +127,7 @@ Game.prototype = {
             }
         });
 
+        stats.end();
     },
 
     collectCoin: function (player, coin) {

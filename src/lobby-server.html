@@ -1,11 +1,6 @@
 @@include('./_head.html')
-<br/><br/><br/>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!--<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
-<!--         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Project name</a>
-        </div> -->
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/lobby-server.html" clientDestination="/lobby-client.html">Lobby</a></li>
@@ -13,21 +8,96 @@
             <li><a data-map="example" href="/games/example/example-server.html" clientDestination="/games/example/example-client.html">Example</a></li>
             <li><a data-map="coinhunter" href="/games/coinhunter/coinhunter-server.html" clientDestination="/games/coinhunter/coinhunter-client.html">Coinhunter</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
+    -->
 
-    <div class="container">
-      <h1>Connected players:</h1>
-      <ul id="players">
-        <li>No players</li>
-      </ul>
+    <div class="container-fluid">
+      <h1>PocketInput</h1>
+      <p class="lead">Party games controlled with your phone.</p>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Connected players</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Player</th>
+                    <th>Wins</th>
+                  </tr>
+                </thead>
+                <tbody id="players">
+                </tbody>
+              </table>  
+            </div>
+          </div>
+        </div>
 
-      <h1>Last game</h1>
-      <ol id="last-game"></ol>
+        <div class="col-lg-3">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Last game</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody id="last-game">
+                </tbody>
+              </table>   
+            </div>
+          </div>
+          <h3></h3>
+                 
+        </div>
+        
+        <div class="col-lg-3">
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title">Votes (<span id="votecount">0</span>)</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Map</th>
+                    <th>Votes</th>
+                  </tr>
+                </thead>
+                <tbody id="votes">
+                </tbody>
+              </table>  
+              <h6>Voting ends in: <span id="countdown"></span></h6>
+            </div>
+          </div>
+        </div>
 
-      <h1>Votes (<span id="votecount">0</span>) <span id="countdown"></span></h1>
-      <ol id="votes"></ol>
+        <div class="col-lg-3 qr">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Join us!</h3>
+            </div>
+            <div class="panel-body">
+              <div id="qrcode"></div>
+              <h4>http://<span id="ip"></span></h4>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.row -->
+
+
     </div><!-- /.container -->
 
 <script src="/socket.io/socket.io.js"></script>

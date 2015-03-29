@@ -45,6 +45,7 @@ var users = [];
 var lastHighscore;
 
 var games = ['invaders', 'example', 'coinhunter'];
+
 var votes = {};
 
 io.on('connection', function (socket) {
@@ -89,12 +90,27 @@ io.on('connection', function (socket) {
     socket.emit('games', games);
   });
 
-  socket.on('voteGame', function (game) {
-    if (typeof votes[game] === 'undefined') {
-      votes[game] = 1;
-    } else {
-      votes[game]++;
-    }
+  socket.on('voteGame', function (data) {
+    var map = data.map;
+    votes = {};
+    
+    users.forEach(function(user, i) {
+      if (user.userId === data.userId) {
+        console.log(users[i].name, 'voted for', map);
+        users[i].vote = map;
+      }
+    });
+
+    users.forEach(function(user, i) {
+      var votedMap = users[i].vote;
+      if (typeof votedMap !== 'undefined') {
+        if (typeof votes[votedMap] === 'undefined') {
+          votes[votedMap] = 1;
+        } else {
+          votes[votedMap]++;
+        }
+      }
+    });
 
     socket.broadcast.emit('votes', votes );
   });

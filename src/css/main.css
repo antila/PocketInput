@@ -6,12 +6,8 @@
 html, body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    background: #000;
     margin: 0;
     padding: 0;
-    background: #000;
-    color: #eee;
 }
 
 .game {
@@ -34,4 +30,26 @@ canvas {
     text-align: center;
     float: left;
     width: 20%;
+}
+
+.qr {
+    text-align: center;
+}
+
+#qrcode {
+    background: #fff;
+    padding: 5px;
+    display: inline-block;
+}
+
+.container-fluid {
+    /*padding: 25px;*/
+}
+
+.panel {
+    min-height: 70vh;
+}
+
+.hide {
+    display: none;
 }

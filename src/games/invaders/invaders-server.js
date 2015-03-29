@@ -156,6 +156,8 @@ function descend() {
 }
 
 function update() {
+    stats.begin();
+
     var movementSpeed = 200;
 
     //  Scroll the background
@@ -207,6 +209,7 @@ function render() {
     //     game.debug.body(aliens.children[i]);
     // }
 
+    stats.end();
 }
 
 function collisionHandler (bullet, alien) {

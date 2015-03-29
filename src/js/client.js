@@ -13,7 +13,7 @@ socket.on('connect', function (users) {
     socket.emit('setId', userId);
 
     if (username !== null) {
-        socket.emit('setName', { name: username });
+        socket.emit('setName', { name: username, userId: userId });
         if (typeof playerJoined !== 'undefined') {
             playerJoined();
         }

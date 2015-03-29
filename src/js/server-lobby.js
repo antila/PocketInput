@@ -4,6 +4,7 @@ new QRCode(document.getElementById("qrcode"), "http://" + server + '/lobby-clien
 
 var users;
 socket.on('users', function (updateUsers) {
+    console.log('users', updateUsers);
     users = updateUsers;
     var $playerList = $('#players');
     $playerList.empty();
@@ -60,10 +61,6 @@ setInterval(function() {
 
     if (countDown < 0) {    
         var map = $('#votes tr:first').attr('data-map');
-        if (typeof map === 'undefined') {
-            window.location.reload();
-        }
-
         gotoGame(map);
     }
 }, 1000);
@@ -95,6 +92,10 @@ socket.on('lastHighscore', function (highscore) {
 });
 
 function gotoGame(map) {
+    if (typeof map === 'undefined' || map === 'undefined') {
+        window.location.reload();
+    }
+
     var url = '/games/' + map + '/' + map + '-';
     socket.emit('destination', {
         client: url + 'client.html',

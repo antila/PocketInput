@@ -93,14 +93,16 @@ socket.on('lastHighscore', function (highscore) {
 
 function gotoGame(map) {
     if (typeof map === 'undefined' || map === 'undefined') {
-        window.location.reload();
+        setTimeout(function() {
+            window.location.reload();
+        }, 1500); 
+    } else {
+        var url = '/games/' + map + '/' + map + '-';
+        socket.emit('destination', {
+            client: url + 'client.html',
+            server: url + 'server.html'
+        });
     }
-
-    var url = '/games/' + map + '/' + map + '-';
-    socket.emit('destination', {
-        client: url + 'client.html',
-        server: url + 'server.html'
-    });
 }
 
 socket.emit('ready');

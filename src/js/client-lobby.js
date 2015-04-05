@@ -9,7 +9,7 @@ $('#submit').on('click', function() {
 $(document).on('click', '#vote a', function() {
     $('#vote .btn-primary').removeClass('btn-primary');
     $(this).addClass('btn-primary');
-	var game = $(this).text();
+	var game = $(this).attr('data-id');
 	console.log(game);
     socket.emit('voteGame', {
         userId: userId,
@@ -47,6 +47,11 @@ socket.on('games', function(games) {
     $vote.empty();
 
     Object.keys(games).forEach(function(gameName) {
-        $('<a/>', {text: gameName, class: 'btn btn-default btn-lg btn-block' }).appendTo($vote);
+        var game = games[gameName];
+        var $link = $('<a/>', {
+            text: game.name, 
+            class: 'btn btn-default btn-lg btn-block' 
+        }).appendTo($vote);
+        $link.attr('data-id', gameName);
     });
 });

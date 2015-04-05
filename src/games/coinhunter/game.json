@@ -1,0 +1,29 @@
+{
+    "name": "Coin Hunter",
+    "clientUrl": "/games/coinhunter/coinhunter-client.html",
+    "serverUrl": "/games/coinhunter/coinhunter-server.html",
+    "instructions": "/games/coinhunter/assets/characters.png",
+    "preload": {
+        "images": [
+            { "id": "player", "url": "/games/coinhunter/assets/player.png" },
+            { "id": "tiles", "url": "/games/coinhunter/assets/tiles.png" }
+        ],
+        "tilemaps": [
+        	{ "id": "level", "url": "/games/coinhunter/assets/level-2.json" }
+        ],
+        "spritesheets": [
+        	{ 
+        		"id": "coin", 
+        		"url": "/games/coinhunter/assets/coin.png", 
+        		"width": 32,
+        		"height": 32
+        	},
+        	{ 
+        		"id": "characters", 
+        		"url": "/games/coinhunter/assets/characters.png", 
+        		"width": 32,
+        		"height": 64
+        	}
+        ]
+    }
+}

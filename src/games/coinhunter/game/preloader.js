@@ -18,18 +18,6 @@
     },
       
     loadResources: function () {
-      // Load levels
-      this.load.tilemap('level', '/games/coinhunter/assets/level-2.json', null, Phaser.Tilemap.TILED_JSON);
-      // Debug Level
-      //this.load.tilemap('level', '/games/coinhunter/assets/level-32.json', null, Phaser.Tilemap.TILED_JSON);
-      
-      // Load Tiles
-      //this.load.image('functions', 'games/coinhunter/assets/functions.png');
-      this.load.image('tiles', '/games/coinhunter/assets/tiles.png');
-      this.load.spritesheet('coin', '/games/coinhunter/assets/coin.png', 32, 32);
-
-      // Load characters
-      this.load.spritesheet('characters', '/games/coinhunter/assets/characters.png', 32, 64);
 
     },
 

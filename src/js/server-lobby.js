@@ -49,7 +49,7 @@ socket.on('votes', function (votes) {
 
     $('#votecount').text(totalVotes +'/' + users.length);
 
-    if (totalVotes >= users.length) {
+    if (totalVotes >= users.length && users.length !== 0) {
         var map = $('#votes tr:first').attr('data-map');
         gotoGame(map);
     }

@@ -23,9 +23,25 @@
       var gameInfo = this.game.cache.getJSON('gameInfo');
 
       /* Load game assets --------------------------------------------------- */
+      // Images
       if (typeof gameInfo.preload.images !== 'undefined') {
-        gameInfo.preload.images.forEach(function(asset, key) {
+        gameInfo.preload.images.forEach(function(asset) {
           that.load.image(asset.id, asset.url);      
+        });
+      }
+
+      // Tilemaps
+      if (typeof gameInfo.preload.tilemaps !== 'undefined') {
+        gameInfo.preload.tilemaps.forEach(function(asset) {
+          that.load.tilemap(asset.id, asset.url, null, Phaser.Tilemap.TILED_JSON);
+        });
+      }
+
+      // Spritesheets
+      if (typeof gameInfo.preload.spritesheets !== 'undefined') {
+        gameInfo.preload.spritesheets.forEach(function(asset) {
+          that.load.tilemap(asset.id, asset.url, null, Phaser.Tilemap.TILED_JSON);
+          that.load.spritesheet(asset.id, asset.url, asset.width, asset.height);
         });
       }
 

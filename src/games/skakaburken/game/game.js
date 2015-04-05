@@ -13,6 +13,12 @@ Game.prototype = {
     create: function () {
         var that = this;
 
+        // Hack to make safari iOS stay awake.
+        var stayAwake = setInterval(function () {
+            location.href = location.href; //try refreshing
+            window.setTimeout(window.stop, 0); //stop it soon after
+        }, 20000);
+
         // Run in background
         this.game.stage.disableVisibilityChange = true;
 

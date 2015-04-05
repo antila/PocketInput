@@ -112,7 +112,7 @@ gulp.task('html', function(){
 
 gulp.task('watch', function () {
   // gulp.watch(paths.js, ['lint']);
-  // gulp.watch('**/**.html', ['fileinclude']);
+  gulp.watch('**/**.html', ['fileinclude']);
   // gulp.watch(['./src/index.html', paths.css, paths.js], ['html']);
 });
 

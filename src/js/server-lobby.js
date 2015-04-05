@@ -48,8 +48,8 @@ socket.on('votes', function (votes) {
     }
 
     $('#votecount').text(totalVotes +'/' + users.length);
-
-    if (totalVotes >= users.length && users.length !== 0) {
+    
+    if (totalVotes >= users.length && users.length > 0) {
         var map = $('#votes tr:first').attr('data-map');
         gotoGame(map);
     }
@@ -92,16 +92,13 @@ socket.on('lastHighscore', function (highscore) {
 });
 
 function gotoGame(map) {
+    console.log('goito', map);
     if (typeof map === 'undefined' || map === 'undefined') {
         setTimeout(function() {
             window.location.reload();
         }, 1500); 
     } else {
-        var url = '/games/' + map + '/' + map + '-';
-        socket.emit('destination', {
-            client: url + 'client.html',
-            server: url + 'server.html'
-        });
+        socket.emit('destination', map);
     }
 }
 

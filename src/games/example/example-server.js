@@ -95,7 +95,7 @@ Game.prototype = {
         });
 
         setTimeout(function() {
-            socket.emit('gameover', highscore);
+            // socket.emit('gameover', highscore);
         }, 3000); 
     }
 

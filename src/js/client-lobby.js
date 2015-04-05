@@ -42,13 +42,11 @@ $('#logout').on('click', function() {
 });
 
 socket.on('games', function(games) {
+    console.log('on games', games);
 	var $vote = $('#vote');
     $vote.empty();
 
-    games.forEach(function(game) {
-        
-        $('<a/>', {text: game, class: 'btn btn-default btn-lg btn-block' }).appendTo($vote);
+    Object.keys(games).forEach(function(gameName) {
+        $('<a/>', {text: gameName, class: 'btn btn-default btn-lg btn-block' }).appendTo($vote);
     });
 });
-
-// $('.container-fluid').removeClass('hide');

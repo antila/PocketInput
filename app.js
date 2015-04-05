@@ -44,7 +44,29 @@ app.use(express.static('src'));
 var users = [];
 var lastHighscore;
 
-var games = ['invaders', 'example', 'coinhunter', 'skakaburken'];
+function getGames(files_){
+  var games = {};
+  var dir = 'src/games/';
+  var files = fs.readdirSync(dir);
+  for (var i in files){
+    var name =  files[i];
+    var gameFile = dir + name + '/game.json';
+    try {
+      if (fs.statSync(gameFile).isFile()) {
+        var contents = JSON.parse(fs.readFileSync(gameFile).toString());
+        games[name] = contents;
+      } else {
+        console.log(gameFile);
+      }
+    } catch (e) {
+      // console.log(e);
+      console.warn('Missing game.json for game:', name);
+    }
+  }
+  return games;
+}
+
+var games = getGames();
 
 var votes = {};
 
@@ -91,13 +113,16 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('destination', 'http://' + ip + '/lobby-client.html');
   });    
 
-  socket.on('destination', function (data) {
+  socket.on('destination', function (map) {
     votes = {};
-    socket.emit('destination', 'http://' + ip + data.server);
-    socket.broadcast.emit('destination', 'http://' + ip + data.client);
+    var game = games[map];
+
+    socket.broadcast.emit('destination', 'http://' + ip + game.clientUrl);
+    socket.emit('destination', 'http://' + ip + game.serverUrl);
   });
 
   socket.on('getGames', function () {
+    console.log('getGames', games);
     socket.emit('games', games);
   });
 
@@ -166,6 +191,9 @@ io.on('connection', function (socket) {
         name: user.name,
         vote: user.vote
       }
+    });
+    sendUsers = sendUsers.filter(function(user) {
+      return (typeof user.name !== 'undefined');
     });
     socket.emit('users', sendUsers);
     socket.broadcast.emit('users', sendUsers);

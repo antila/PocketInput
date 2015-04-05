@@ -409,7 +409,7 @@ updatePlayers = function updatePlayers(newUsers) {
 
 /* Received input from player */
 receiveInput = function receiveInput(input) {
-    // console.log(input);
+    console.log(input);
 
     var player = users[input.userId].player;
     

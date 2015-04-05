@@ -1,0 +1,11 @@
+{
+    "name": "Example",
+    "clientUrl": "/games/example/example-client.html",
+    "serverUrl": "/games/example/example-server.html",
+    "instructions": "/games/example/assets/minecraftia.png",
+    "preload": {
+        "images": [
+            { "id": "player", "url": "/games/example/assets/player.png" }
+        ]
+    }
+}

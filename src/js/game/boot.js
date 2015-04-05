@@ -1,12 +1,15 @@
 (function () {
   'use strict';
 
+  $('body').addClass('game');
+
   function Boot() {}
 
   Boot.prototype = {
     
     preload: function () {
       this.load.image('preloader', '/assets/preloader.gif');
+      this.load.json('gameInfo', 'game.json');
     },
 
     create: function () {

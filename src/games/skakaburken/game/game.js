@@ -7,6 +7,7 @@ function Game() {
 
 Game.prototype = {
     players: [],
+    newUsers: [],
     phaser: null,
 
     create: function () {
@@ -17,10 +18,10 @@ Game.prototype = {
 
         socket.on('input', function (input) {
             var player = that.players[input.userId].player;
-            that.players[input.userId].meter += input.shake.motion;
+            that.players[input.userId].meter += Math.floor(input.shake.motion);
 
-            if (that.players[input.userId].meter > 500) {
-                that.players[input.userId].meter = 500;
+            if (that.players[input.userId].meter > 20000) {
+                that.players[input.userId].meter = 20000;
                 that.endGame();
             }
 
@@ -41,18 +42,18 @@ Game.prototype = {
         Object.keys(this.players).forEach(function(userId) {
             var player = that.players[userId].player;
 
-            player.cropRect.height = player.meter;
-            player.updateCrop();
+            //player.cropRect.height = player.meter;
+            //player.updateCrop();
         });
     },
 
     createPlayer: function(user) {
-        var posX = (Object.keys(this.players).length) * 160 + 100;
-        var posY = 100;
+        var posX = this.game.width / ((this.newUsers.length * Object.keys(this.players).length) + 2);
+        var posY = this.game.height;
 
         var player = this.game.add.sprite(posX, posY, 'player');
         player.crop(new Phaser.Rectangle(0, 0, 128, 500));
-        player.anchor.setTo(0.5, 0.5);
+        player.anchor.setTo(0.5, 1);
 
         var style = { font: "24px Arial", fill: "#ffffff", align: "center"};
         player.text = this.add.text(288*(Object.keys(this.players).length + 1), 32, user.name + ": 0" , style);
@@ -69,6 +70,7 @@ Game.prototype = {
     /* Player have joined or left the game */
     updatePlayers: function updatePlayers(newUsers) {
         var that = this;
+        this.newUsers = newUsers;
 
         // Add new users
         newUsers.forEach(function(user) {

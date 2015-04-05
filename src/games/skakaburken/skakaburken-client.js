@@ -4,7 +4,7 @@ $(document).ready(function() {
     //create a new instance of shake.js.
     var myShakeEvent = new Shake({
         threshold: 1,
-        timeout: 1000
+        timeout: 50
     });
 
     var clientShake = {

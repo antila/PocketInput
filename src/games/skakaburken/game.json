@@ -1,0 +1,19 @@
+{
+    "name": "Skaka burken",
+    "clientUrl": "/games/skakaburken/skakaburken-client.html",
+    "serverUrl": "/games/skakaburken/skakaburken-server.html",
+    "instructions": "/games/skakaburken/assets/soda-1.png",
+    "preload": {
+        "images": [
+            { "id": "player", "url": "/games/skakaburken/assets/player.png" },
+            { "id": "soda1", "url": "/games/skakaburken/assets/soda-1.png" },
+            { "id": "soda1", "url": "/games/skakaburken/assets/soda-2.png" },
+            { "id": "soda1", "url": "/games/skakaburken/assets/soda-3.png" },
+            { "id": "soda1", "url": "/games/skakaburken/assets/soda-4.png" },
+            { "id": "soda1", "url": "/games/skakaburken/assets/soda-5.png" },
+            { "id": "soda1", "url": "/games/skakaburken/assets/soda-6.png" },
+            { "id": "soda1", "url": "/games/skakaburken/assets/soda-7.png" },
+            { "id": "soda1", "url": "/games/skakaburken/assets/soda-8.png" }
+        ]
+    }
+}

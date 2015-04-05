@@ -44,3 +44,10 @@ canvas {
 .hide {
     display: none;
 }
+
+/* Select client/server ----------------------------------------------------- */
+@media all and (max-width: 1280px) {
+    .join-as-server {
+        display: none;
+    }
+}

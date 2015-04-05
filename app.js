@@ -50,26 +50,28 @@ var votes = {};
 
 io.on('connection', function (socket) {
   socket.on('disconnect', function() {
-      users.forEach(function(user, i) {
-        if (user.userId === socket.userId) {
+    users.forEach(function(user, i) {
+      if (user.userId === socket.userId) {
+        console.log(user.name, 'wants to leave');
+        user.timeout = setTimeout(function() {
           console.log(user.name, 'disconnected');
           users.splice(i--, 1);
-        }
-      });
 
-      socket.broadcast.emit('users', users);
-      socket.emit('users', users);
+          sendUsers();
+        }, 15000);
+      }
+    });
+
   });
 
-  socket.emit('users', users);
-  socket.broadcast.emit('users', users);
+  sendUsers();
 
   socket.on('input', function (data) {
     socket.broadcast.emit('input', data);
   });   
 
   socket.on('ready', function (data) {
-    socket.emit('users', users);
+    sendUsers();
     socket.emit('lastHighscore', lastHighscore);
     socket.emit('votes', votes );
   });  
@@ -125,30 +127,61 @@ io.on('connection', function (socket) {
   });
 
   socket.on('setName', function (data) {
-      users.forEach(function(user, i) {
-        if (user.userId === socket.userId) {
-          users[i].name = data.name;
-        }
-      });
-      console.log(data.name, 'joined');
+    users.forEach(function(user, i) {
+      if (user.userId === data.userId) {
+        console.log(data.userId + ' is ' + data.name);
+        users[i].name = data.name;
+      }
+    });
 
-      socket.emit('users', users);
-      socket.broadcast.emit('users', users);
+    markAsReconnected();
+
+    sendUsers();
   });
 
   socket.on('setId', function (userId) {
+    socket.userId = userId;
+    
     var foundUser = false;
       users.forEach(function(user, i) {
-        if (user.userId === socket.userId) {
+        if (user.userId === userId) {
           foundUser = true;
         }
       });
     if (foundUser === false) {
-      socket.userId = userId
+      console.log('new user: ' + userId);
+      
       users.push({userId: userId});
     }
 
-    socket.emit('users', users);
-    socket.broadcast.emit('users', users);
+    markAsReconnected();
+
+    sendUsers();
   });
+  
+  function sendUsers() {
+    var sendUsers = users.map(function(user) {
+      return {
+        userId: user.userId,
+        name: user.name,
+        vote: user.vote
+      }
+    });
+    socket.emit('users', sendUsers);
+    socket.broadcast.emit('users', sendUsers);
+  }
+
+  function markAsReconnected() {
+    users.forEach(function(user, i) {
+      console.log(user.userId, socket.userId);
+      if (user.userId === socket.userId) {
+        console.log(typeof user.timeout);
+        if (typeof user.timeout !== 'undefined') {
+          console.log(user.name, 'is no longer marked as leaving');
+          clearTimeout(user.timeout);
+        }
+      }
+    });
+  }
+
 });

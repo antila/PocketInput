@@ -1,6 +1,6 @@
 $('#submit').on('click', function() {
-    var name = $('#username').val();
-    socket.emit('setName', { name: name });
+    var name = $.trim($('#username').val());
+    socket.emit('setName', { name: name, userId: userId });
     localStorage.setItem("username", name);
     username = localStorage.getItem("username");
     playerJoined();

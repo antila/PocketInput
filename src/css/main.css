@@ -46,10 +46,24 @@ canvas {
     /*padding: 25px;*/
 }
 
-.panel {
+.panel-server {
     min-height: 70vh;
 }
-
+.text-left {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .hide {
     display: none;
 }

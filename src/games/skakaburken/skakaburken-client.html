@@ -6,26 +6,22 @@
       padding: 0;
       background: #000;
     }
-    .shake {
-      background: #444;
-      display: inline-block;
-      width: 100%;
+    .soda {
+      width: auto;
       height: 100vh;
-      font-size: 40px;
-      line-height: 100vh;*/
       text-align: center;
-      color: #fff;
+      font-size: 0;
     }
-    h1 {
-      position: absolute;
-      top: 0;
-      left: 0;
-      pointer-events:none;
+    .soda img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+    .landscape .soda {
+      image-orientation: 270deg;
     }
   </style>
 
-  <div class="shake">shake me</div>
-  <h1>username</h1>
+  <div class="soda"><img src="assets/soda-1.png" /></div>
  
   <script src="/games/skakaburken/skakaburken-client.js"></script>
   <script src="/games/skakaburken/script/shake.js"></script>

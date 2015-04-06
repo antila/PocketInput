@@ -6,28 +6,48 @@
       padding: 0;
       background: #000;
     }
-    #container {
-      background: #555;
+    .portrait .joystick{
+      width: auto;
+      height: 80vh;
+      line-height: 80vh;
+    }
+    .landscape .joystick{
+      float: left;
+      width: 80vw;
+      height: 100vh;
+      line-height: 100vh;
+
+    }
+    .portrait .button{
+      width: auto;
+      height: 20vh;
+      line-height: 20vh;
+
+    }
+    .landscape .button{
+      width: auto;
+      height: 100vh;
+      line-height: 100vh;
+    }
+    .controller {
+      display: block;
+      font-size: 30px;
+      text-align: center;
+      color: #888;
+    }
+    .joystick {
+      background: #333;
     }
     .button {
       background: #444;
-    }
-    .controller {
-      display: inline-block;
-      width: 49%;
-      height: 100vh;
-      font-size: 40px;
-      line-height: 100vh;
-      text-align: center;
-      color: #fff;
     }
     .button.active {
       background: #666;
     }
   </style>
 
-  <div id="container" class="controller">joystick</div>
-  <div id="button" class="controller button">shoot</div>
+  <div id="joystick" class="controller joystick">Joystick</div>
+  <div id="button" class="controller button"><i class="fa fa-crosshairs"></i></div>
  
   <script src="/js/lib/virtualjoystick.js"></script>
   <script src="/games/coinhunter/coinhunter-client.js"></script>

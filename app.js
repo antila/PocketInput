@@ -55,12 +55,10 @@ function getGames(files_){
       if (fs.statSync(gameFile).isFile()) {
         var contents = JSON.parse(fs.readFileSync(gameFile).toString());
         games[name] = contents;
-      } else {
-        console.log(gameFile);
       }
     } catch (e) {
-      // console.log(e);
-      console.warn('Missing game.json for game:', name);
+      console.log(e);
+      console.warn('Missing or broken game.json for game:', name);
     }
   }
   return games;
@@ -74,9 +72,7 @@ io.on('connection', function (socket) {
   socket.on('disconnect', function() {
     users.forEach(function(user, i) {
       if (user.userId === socket.userId) {
-        console.log(user.name, 'wants to leave');
         user.timeout = setTimeout(function() {
-          console.log(user.name, 'disconnected');
           users.splice(i--, 1);
 
           sendUsers();
@@ -122,7 +118,6 @@ io.on('connection', function (socket) {
   });
 
   socket.on('getGames', function () {
-    console.log('getGames', games);
     socket.emit('games', games);
   });
 
@@ -132,7 +127,6 @@ io.on('connection', function (socket) {
     
     users.forEach(function(user, i) {
       if (user.userId === data.userId) {
-        console.log(users[i].name, 'voted for', map);
         users[i].vote = map;
       }
     });
@@ -154,7 +148,6 @@ io.on('connection', function (socket) {
   socket.on('setName', function (data) {
     users.forEach(function(user, i) {
       if (user.userId === data.userId) {
-        console.log(data.userId + ' is ' + data.name);
         users[i].name = data.name;
       }
     });
@@ -174,8 +167,7 @@ io.on('connection', function (socket) {
         }
       });
     if (foundUser === false) {
-      console.log('new user: ' + userId);
-      
+    
       users.push({userId: userId});
     }
 
@@ -200,16 +192,12 @@ io.on('connection', function (socket) {
   }
 
   function markAsReconnected() {
-    users.forEach(function(user, i) {
-      console.log(user.userId, socket.userId);
+    users.forEach(function(user, i) {    
       if (user.userId === socket.userId) {
-        console.log(typeof user.timeout);
         if (typeof user.timeout !== 'undefined') {
-          console.log(user.name, 'is no longer marked as leaving');
           clearTimeout(user.timeout);
         }
       }
     });
   }
-
 });

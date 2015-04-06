@@ -91,6 +91,8 @@ Game.prototype = {
         var highscore = [];
         var that = this;
 
+        clearInterval(stayAwake); //allow device sleep again when not needed
+
         Object.keys(this.players).forEach(function(userId) {
             var player = that.players[userId].player;
             if (that.players[userId].meter > winner.meter) {

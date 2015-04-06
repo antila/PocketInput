@@ -40,8 +40,15 @@
       // Spritesheets
       if (typeof gameInfo.preload.spritesheets !== 'undefined') {
         gameInfo.preload.spritesheets.forEach(function(asset) {
-          that.load.tilemap(asset.id, asset.url, null, Phaser.Tilemap.TILED_JSON);
           that.load.spritesheet(asset.id, asset.url, asset.width, asset.height);
+        });
+      }
+
+      // JSON Spritesheets
+      if (typeof gameInfo.preload.atlasjson !== 'undefined') {
+        gameInfo.preload.atlasjson.forEach(function(asset) {
+          console.log('loading', asset.id);
+          that.load.atlasJSONHash(asset.id, asset.url, asset.json);
         });
       }
 

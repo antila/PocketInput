@@ -1,6 +1,27 @@
+var checkOrientation = function() {
+    if(window.innerHeight > window.innerWidth) { 
+        $('html').removeClass('landscape').addClass('portrait');
+    } else {
+        $('html').removeClass('portrait').addClass('landscape');
+    }
+};
+
+window.addEventListener( 'orientationchange', checkOrientation, false );
+window.addEventListener( 'resize', checkOrientation, false );
+
 $(document).ready(function() {
-    $('h1').text(username);
-    
+    checkOrientation();
+
+    var imgsrc = $('.soda img').attr("src").replace("1.png", Math.floor((Math.random() * 8) + 1) + ".png");
+    $('.soda img').attr("src", imgsrc);
+
+    // Hack to make safari iOS stay awake.
+    var stayAwake = setInterval(function () {
+        location.href = location.href; //try refreshing
+        window.setTimeout(window.stop, 0); //stop it soon after
+    }, 20000);
+
+
     //create a new instance of shake.js.
     var myShakeEvent = new Shake({
         threshold: 1,
@@ -26,8 +47,6 @@ $(document).ready(function() {
     //shake event callback
     function shakeEventDidOccur (shake) {
 
-         $('.shake').text(myShakeEvent.lastX);
-
         //put your own code here etc.
         clientShake.deltaX = Math.abs(clientShake.x - myShakeEvent.lastX);
         clientShake.deltaY = Math.abs(clientShake.y - myShakeEvent.lastY);
@@ -43,7 +62,5 @@ $(document).ready(function() {
             shake: clientShake,
             userId: userId 
         });
-
-        $('.shake').text("shaked:" + clientShake.motion.toFixed(2));
     }
 });

@@ -5,3 +5,7 @@ socket.on('destination', function (destination) {
     	window.location = destination;
 	}
 });
+
+if (typeof gameId !== 'undefined') {
+	socket.emit('destination', gameId);
+}

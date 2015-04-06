@@ -123,11 +123,13 @@
     },
 
     update: function () {
-      this.hills.x -= 1;
-      this.clouds1.x += 0.3;
-      this.clouds2.x += 0.4;
-      this.clouds3.x += 0.6;
-      this.clouds3.y -= 0.1;
+      if (typeof this.hills !== 'undefined') {
+        this.hills.x -= 1;
+        this.clouds1.x += 0.3;
+        this.clouds2.x += 0.4;
+        this.clouds3.x += 0.6;
+        this.clouds3.y -= 0.1;
+      }
     }
   };
 

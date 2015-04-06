@@ -115,8 +115,6 @@ Game.prototype = {
 
 window['phaser'] = window['phaser'] || {};
 window['phaser'].Game = Game;
+window['gameId'] = 'skakaburken';
 
 }());
-
-
-

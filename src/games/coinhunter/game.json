@@ -2,7 +2,7 @@
     "name": "Coin Hunter",
     "clientUrl": "/games/coinhunter/coinhunter-client.html",
     "serverUrl": "/games/coinhunter/coinhunter-server.html",
-    "instructions": "/games/coinhunter/assets/characters.png",
+    "instructions": "/games/coinhunter/assets/logo.png",
     "preload": {
         "images": [
             { "id": "player", "url": "/games/coinhunter/assets/player.png" },

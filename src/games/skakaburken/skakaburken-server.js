@@ -47,16 +47,22 @@ Game.prototype = {
         });
     },
 
-    createPlayer: function(user) {
-        var posX = this.game.width / ((this.newUsers.length * Object.keys(this.players).length) + 2);
-        var posY = this.game.height;
+    createPlayer: function(user, index) {
 
-        var player = this.game.add.sprite(posX, posY, 'player');
-        player.crop(new Phaser.Rectangle(0, 0, 128, 500));
-        player.anchor.setTo(0.5, 1);
+        var widthPerPlayer = this.game.world.width / 8;
+
+        //var posX = this.game.width / ((this.newUsers.length * Object.keys(this.players).length) + 2);
+        var posX = widthPerPlayer*((index%7) + 1);
+
+        var posY = Math.ceil((index+1)/7)*128;
+
+        var player= new Phaser.Rectangle(0, 0, widthPerPlayer, 128);
+        //player.crop(new Phaser.Rectangle(0, 0, 128, 500));
+        //player.anchor.setTo(0.5, 1);
 
         var style = { font: "24px Arial", fill: "#ffffff", align: "center"};
-        player.text = this.add.text(288*(Object.keys(this.players).length + 1), 32, user.name + ": 0" , style);
+        //player.text = this.add.text(288*(Object.keys(this.players).length + 1), 32, user.name + ": 0" , style);
+        player.text = this.add.text(posX, posY, user.name + ": 0" , style);
         player.text.anchor.setTo(0.5, 0.5);
 
         this.players[user.userId] = {
@@ -73,9 +79,11 @@ Game.prototype = {
         this.newUsers = newUsers;
 
         // Add new users
-        newUsers.forEach(function(user) {
+        newUsers.forEach(function(user,index) {
             if (typeof that.players[user.userId] === 'undefined') {
-                that.createPlayer(user);
+                //for (var i = 10 - 1; i >= 0; i--) {
+                    that.createPlayer(user,index);
+                //};
             }
         });
     },

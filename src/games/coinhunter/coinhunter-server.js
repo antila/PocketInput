@@ -137,7 +137,7 @@ Game.prototype = {
     collectCoin: function (player, coin) {
         coin.destroy();
         this.players[player.userId].score++;
-        player.text.setText(this.players[player.userId].name + ": " + this.players[player.userId].score);
+        //player.text.setText(this.players[player.userId].name + ": " + this.players[player.userId].score);
         if (this.coins.length == 0) {
             this.endGame();
         }
@@ -187,8 +187,8 @@ Game.prototype = {
         player.userId = user.userId;
 
         var style = { font: "24px Arial", fill: "#ffffff", align: "center"};
-        player.text = this.add.text(288*(Object.keys(this.players).length + 1), 32, user.name + ": 0" , style);
-        player.text.anchor.setTo(0.5, 0.5);
+        //player.text = this.add.text(288*(Object.keys(this.players).length + 1), 32, user.name + ": 0" , style);
+        //player.text.anchor.setTo(0.5, 0.5);
 
         this.players[user.userId] = {
             userId: user.userId,

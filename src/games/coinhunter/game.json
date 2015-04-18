@@ -6,10 +6,11 @@
     "preload": {
         "images": [
             { "id": "player", "url": "/games/coinhunter/assets/player.png" },
-            { "id": "tiles", "url": "/games/coinhunter/assets/tiles.png" }
+            { "id": "tiles", "url": "/games/coinhunter/assets/tiles.png"},
+            { "id": "backg", "url": "/games/coinhunter/assets/bg.png" }
         ],
         "tilemaps": [
-        	{ "id": "level", "url": "/games/coinhunter/assets/level-2.json" }
+        	{ "id": "level", "url": "/games/coinhunter/assets/level-new.json" }
         ],
         "spritesheets": [
         	{ 

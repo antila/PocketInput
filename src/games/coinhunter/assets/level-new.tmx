@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="16" tilewidth="64" tileheight="64" nextobjectid="157">
+ <tileset firstgid="1" name="functions" tilewidth="64" tileheight="64">
+  <image source="../../../../../phaser-examples-master/examples/assets/aaa/functions.png" width="256" height="64"/>
+ </tileset>
+ <tileset firstgid="5" name="tiles" tilewidth="64" tileheight="64">
+  <image source="tiles.png" width="640" height="640"/>
+ </tileset>
+ <tileset firstgid="105" name="coin" tilewidth="32" tileheight="32">
+  <image source="../../../../../phaser-examples-master/examples/assets/sprites/coin.png" width="192" height="32"/>
+ </tileset>
+ <tileset firstgid="111" name="bg" tilewidth="1920" tileheight="1024">
+  <image source="bg.png" width="1920" height="1024"/>
+ </tileset>
+ <layer name="Background" width="30" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGLsgfIHsBO4gAcA==
+  </data>
+ </layer>
+ <layer name="Walls" width="30" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzFlUsKgDAMRLvxFtn3/jcUF4XhMZNWEAwU05hM/nqNMa6fTqIZ+KTT6Smp3xI72pbwE0/KK+iV8G/ypW3BR0HX5e38EtPFfEJqQ5xFzDfha0zMjfE6jCVfdstv6lVXq7cyvad8WZ+UR+erm7/U3x1mIp01ldG+m2e3T8n/aZ3ZX+pydvTOunDmTmYlzZXSaW+dvrOt0e/RrnbdbjlK/eWOETfJiEtdh7f7TrpYv3j31//vOTdVghLa
+  </data>
+ </layer>
+ <objectgroup name="Items">
+  <object id="76" name="coin" gid="105" x="273" y="304"/>
+  <object id="77" name="coin" gid="105" x="209" y="432"/>
+  <object id="78" name="coin" gid="105" x="209" y="624"/>
+  <object id="79" name="coin" gid="105" x="81" y="496"/>
+  <object id="80" name="coin" gid="105" x="273" y="816"/>
+  <object id="86" name="coin" gid="105" x="81" y="688"/>
+  <object id="87" name="coin" gid="105" x="145" y="240"/>
+  <object id="101" name="coin" gid="105" x="719" y="306"/>
+  <object id="102" name="coin" gid="105" x="720" y="752"/>
+  <object id="103" name="coin" gid="105" x="1230" y="750"/>
+  <object id="104" name="coin" gid="105" x="1166" y="306"/>
+  <object id="105" name="coin" gid="105" x="1618" y="628"/>
+  <object id="106" name="coin" gid="105" x="1554" y="948"/>
+  <object id="107" name="coin" gid="105" x="1362" y="628"/>
+  <object id="108" name="coin" gid="105" x="1742" y="110"/>
+  <object id="109" name="coin" gid="105" x="1742" y="494"/>
+  <object id="110" name="coin" gid="105" x="1678" y="238"/>
+  <object id="111" name="coin" gid="105" x="1486" y="690"/>
+  <object id="112" name="coin" gid="105" x="1422" y="945"/>
+  <object id="113" name="coin" gid="105" x="1358" y="818"/>
+  <object id="114" name="coin" gid="105" x="1038" y="240"/>
+  <object id="115" name="coin" gid="105" x="1166" y="114"/>
+  <object id="116" name="coin" gid="105" x="1359" y="113"/>
+  <object id="117" name="coin" gid="105" x="1039" y="755"/>
+  <object id="118" name="coin" gid="105" x="847" y="817"/>
+  <object id="119" name="coin" gid="105" x="1102" y="881"/>
+  <object id="120" name="coin" gid="105" x="334" y="946"/>
+  <object id="121" name="coin" gid="105" x="462" y="818"/>
+  <object id="122" name="coin" gid="105" x="142" y="946"/>
+  <object id="123" name="coin" gid="105" x="654" y="881"/>
+  <object id="124" name="coin" gid="105" x="526" y="945"/>
+  <object id="125" name="coin" gid="105" x="79" y="817"/>
+  <object id="126" name="coin" gid="105" x="844" y="239"/>
+  <object id="127" name="coin" gid="105" x="1164" y="624"/>
+  <object id="128" name="coin" gid="105" x="650" y="431"/>
+  <object id="129" name="coin" gid="105" x="528" y="496"/>
+  <object id="130" name="coin" gid="105" x="527" y="685"/>
+  <object id="131" name="coin" gid="105" x="784" y="945"/>
+  <object id="132" name="coin" gid="105" x="79" y="111"/>
+  <object id="133" name="coin" gid="105" x="1616" y="816"/>
+  <object id="134" name="coin" gid="105" x="1808" y="242"/>
+  <object id="135" name="coin" gid="105" x="1806" y="944"/>
+  <object id="136" name="coin" gid="105" x="401" y="371"/>
+  <object id="137" name="coin" gid="105" x="336" y="560"/>
+  <object id="138" name="coin" gid="105" x="593" y="112"/>
+  <object id="139" name="coin" gid="105" x="528" y="307"/>
+  <object id="140" name="coin" gid="105" x="464" y="179"/>
+  <object id="141" name="coin" gid="105" x="335" y="110"/>
+  <object id="142" name="coin" gid="105" x="655" y="624"/>
+  <object id="143" name="coin" gid="105" x="975" y="945"/>
+  <object id="144" name="coin" gid="105" x="1553" y="114"/>
+  <object id="145" name="coin" gid="105" x="1485" y="240"/>
+  <object id="147" name="coin" gid="105" x="1235" y="435"/>
+  <object id="148" name="coin" gid="105" x="1487" y="501"/>
+  <object id="149" name="coin" gid="105" x="911" y="112"/>
+  <object id="150" name="coin" gid="105" x="718" y="113"/>
+  <object id="151" name="coin" gid="105" x="1230" y="945"/>
+  <object id="152" name="coin" gid="105" x="1741" y="752"/>
+  <object id="153" name="coin" gid="105" x="1807" y="626"/>
+  <object id="154" name="coin" gid="105" x="1620" y="425"/>
+  <object id="155" name="coin" gid="105" x="1361" y="362"/>
+  <object id="156" name="coin" gid="105" x="1295" y="240"/>
+ </objectgroup>
+ <layer name="Functions" width="30" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGAb0BAAeAAAE=
+  </data>
+ </layer>
+</map>

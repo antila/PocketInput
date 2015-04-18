@@ -18,10 +18,14 @@ Game.prototype = {
     actionButton: null,
     actionTimer: 0,
     spawnpoints: [
-        { x: 64,    y: 64},
-        { x: 128,   y: 64},
-        { x: 256,   y: 64},
-        { x: 512,   y: 64},
+        { x: 896,   y: 448},
+        { x: 960,   y: 512},
+        { x: 896,   y: 512},
+        { x: 960,   y: 448},
+        { x: 832,   y: 384},
+        { x: 1024,  y: 576},
+        { x: 832,   y: 576},
+        { x: 1024,  y: 384},
     ],
 
     create: function () {
@@ -65,16 +69,16 @@ Game.prototype = {
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.stage.backgroundColor = '#000000';
 
-        //bg = game.add.tileSprite(0, 0, 800, 600, 'background');
+        this.bg = this.game.add.tileSprite(0, 0, 1920, 1024, 'backg');
         //bg.fixedToCamera = true;
 
         this.map = this.add.tilemap('level');
         this.map.addTilesetImage('tiles');
-        this.map.setCollisionByExclusion([0], true, "Walls");
-
+        this.map.setCollisionBetween(0, 99, true, "Walls");
+        //this.map.setCollisionByExclusion([0], true, "Walls");
         this.bg = this.map.createLayer('Background');
         this.layer = this.map.createLayer('Walls');
-        // layer.debug = true;       //  Un-comment this on to see the collision tiles
+        //this.layer.debug = true;       //  Un-comment this on to see the collision tiles
         this.layer.resizeWorld();
 
         //  Here we create our coins group
@@ -168,6 +172,7 @@ Game.prototype = {
         // Add Players
         var spawnpoint = this.spawnpoints[Object.keys(this.players).length];
         var player = this.game.add.sprite(spawnpoint.x, spawnpoint.y, 'characters');
+        //player.tint = spawnpoint.color;
         player.tint = Math.random() * 0xffffff;
         this.game.physics.enable(player, Phaser.Physics.ARCADE);
         player.body.collideWorldBounds = true;

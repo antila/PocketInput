@@ -100,7 +100,7 @@ Game.prototype = {
             }
             highscore.push({
                 userId: userId,
-                score: Math.round(that.players[userId].meter/20)
+                score: Math.round(that.players[userId].meter/200)
             });
         });
 

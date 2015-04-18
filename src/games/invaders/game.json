@@ -2,7 +2,7 @@
     "name": "Invaders",
     "clientUrl": "/games/invaders/invaders-client.html",
     "serverUrl": "/games/invaders/invaders-server.html",
-    "instructions": "/games/invaders/assets/minecraftia.png",
+    "instructions": "/games/invaders/assets/droid.png",
     "preload": {
         "images": [
             { "id": "player", "url": "/games/invaders/assets/player.png" }

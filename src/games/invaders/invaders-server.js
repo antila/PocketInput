@@ -39,7 +39,7 @@ Game.prototype = {
             }
 
             var player = game.users[input.userId].player;
-            
+
             player.inputDeltaX = input.deltaX;
             player.inputDeltaY = input.deltaY;
 
@@ -60,19 +60,19 @@ Game.prototype = {
 
             player.shoot = input.isShooting;
         });
-        
+
         socket.on('users', function (updateUsers) {
             // Add new users
             if (typeof this.users === 'undefined') {
                 this.users = [];
             }
 
-            updateUsers.forEach(function(user) {
+            updateUsers.forEach(function(user, index) {
                 if (typeof game.users[user.userId] === 'undefined') {
                     console.log('create', user.userId, user, game);
                     game.users[user.userId] = {};
-                    game.users[user.userId].player = game.createPlayer(user.userId);
-                    game.users[user.userId].killCount = 0; 
+                    game.users[user.userId].player = game.createPlayer(user.userId, index);
+                    game.users[user.userId].killCount = 0;
                     var style = { font: "12px Arial", fill: "#ff0044", align: "center" };
 
                     var t = game.game.add.text(game.world.centerX-300, 0, user.name, style);
@@ -148,7 +148,7 @@ Game.prototype = {
         this.stateText.anchor.setTo(0.5, 0.5);
         this.stateText.visible = false;
 
-        // for (var i = 0; i < 3; i++) 
+        // for (var i = 0; i < 3; i++)
         // {
         //     var ship = lives.create(game.world.width - 100 + (30 * i), 60, 'ship');
         //     ship.anchor.setTo(0.5, 0.5);
@@ -215,15 +215,18 @@ Game.prototype = {
         // var that = this;
         // Object.keys(this.players).forEach(function(userId) {
         //     var player = that.players[userId].player;
-            
+
         //     that.game.debug.bodyInfo(player, 32, 32);
         //     that.game.debug.body(player);
         // });
     // },
 
-    createPlayer: function(userId) {
+    createPlayer: function(userId, index) {
         //  The hero!
-        var posX = (this.players.length + 1) * 100;
+
+        var widthPerPlayer = this.game.world.width / (this.players.length + 1);
+
+        var posX = index * widthPerPlayer;
         var player = this.game.add.sprite(posX, 500, 'ship');
         player.anchor.setTo(0.5, 0.5);
         this.game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -317,11 +320,11 @@ Game.prototype = {
 
         setTimeout(function() {
             socket.emit('gameover', highscore);
-        }, 3000); 
+        }, 3000);
     },
 
     enemyHitsPlayer: function(player, bullet) {
-        
+
         bullet.kill();
 
         // live = lives.getFirstAlive();
@@ -410,7 +413,7 @@ Game.prototype = {
                 //  And fire it
                 bullet.reset(player.x, player.y + 8);
                 bullet.body.velocity.y = -400;
-                player.bulletTime = game.time.now + 200;
+                player.bulletTime = game.time.now + 900;
             }
         }
     },

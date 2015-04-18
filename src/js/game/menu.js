@@ -11,7 +11,7 @@
       // this.game.state.start('game');
       // return;
 
-      this.createBackground();   
+      this.createBackground();
       this.createGameNameText();
       this.createInstructions();
       this.createFadeInScreen();
@@ -26,7 +26,7 @@
       this.clouds1.scale = {x: 2, y: 2};
       // this.clouds1.alpha = 0.5;
       this.clouds1.tint = 0xdef1f8;
-      
+
       this.clouds2 = this.game.add.tileSprite(0, 0, 2002, 246, 'clouds2');
       this.clouds2.y = 110;
       this.clouds2.x = -800;
@@ -50,7 +50,7 @@
       this.ground.beginFill(0xd5edf7, 1);
       this.ground.drawRect(0, 750, this.game.width, this.game.height);
       this.ground.alpha = 1;
-      this.ground.endFill();   
+      this.ground.endFill();
     },
 
     createGameNameText: function() {
@@ -74,12 +74,12 @@
       this.instructions.alpha = 0.4;
       var bounceIn = this.game.add.tween(this.instructions.scale).to( { y: 1, x: 1 }, 350, Phaser.Easing.Bounce.Out, true);
       this.game.add.tween(this.instructions).to( { alpha: 1 }, 250, 'Linear', true);
-      
-      bounceIn.onComplete.add(function() { 
+
+      bounceIn.onComplete.add(function() {
         // Animate in game name
         this.game.add.tween(this.gameNameText).to( { y: 80 }, 450, Phaser.Easing.Bounce.Out, true);
         var tween = this.game.add.tween(this.gameNameText).to( { alpha: 1 }, 450, 'Linear', true);
-        tween.onComplete.add(function() { 
+        tween.onComplete.add(function() {
           this.startCountDown();
         }, this);
       }, this);
@@ -97,7 +97,7 @@
         that.startTxt.text = 'Starting: ' + --that.countdownTime;
         if (that.countdownTime <= 0) {
           var tween = that.game.add.tween(that.blackBox).to( { alpha: 1 }, 400, "Linear", true);
-          
+
           tween.onComplete.add(function() {
             // Start game
             this.game.stage.backgroundColor = '#000000';
@@ -117,7 +117,7 @@
 
       var tween = this.game.add.tween(this.blackBox).to( { alpha: 0 }, 400, "Linear", true);
 
-      tween.onComplete.add(function() { 
+      tween.onComplete.add(function() {
         this.showInstructions();
       }, this);
     },

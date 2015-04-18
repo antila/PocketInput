@@ -18,14 +18,14 @@ Game.prototype = {
     actionButton: null,
     actionTimer: 0,
     spawnpoints: [
-        { x: 896,   y: 448},
-        { x: 960,   y: 512},
-        { x: 896,   y: 512},
-        { x: 960,   y: 448},
-        { x: 832,   y: 384},
-        { x: 1024,  y: 576},
-        { x: 832,   y: 576},
-        { x: 1024,  y: 384},
+        { x: 896,   y: 448, color:0x00FF00},
+        { x: 960,   y: 512, color:0xFF0000},
+        { x: 896,   y: 512, color:0xFFFF00},
+        { x: 960,   y: 448, color:0x0000FF},
+        { x: 832,   y: 384, color:0xFF00FF},
+        { x: 1024,  y: 576, color:0x00FFFF},
+        { x: 832,   y: 576, color:0x339933},
+        { x: 1024,  y: 384, color:0x993333}
     ],
 
     create: function () {
@@ -76,7 +76,7 @@ Game.prototype = {
         this.map.addTilesetImage('tiles');
         this.map.setCollisionBetween(0, 99, true, "Walls");
         //this.map.setCollisionByExclusion([0], true, "Walls");
-        this.bg = this.map.createLayer('Background');
+        //this.bg = this.map.createLayer('Background');
         this.layer = this.map.createLayer('Walls');
         //this.layer.debug = true;       //  Un-comment this on to see the collision tiles
         this.layer.resizeWorld();
@@ -170,10 +170,10 @@ Game.prototype = {
 
     createPlayer: function(user) {
         // Add Players
-        var spawnpoint = this.spawnpoints[Object.keys(this.players).length];
+        var spawnpoint = this.spawnpoints[Object.keys(this.players).length % 8];
         var player = this.game.add.sprite(spawnpoint.x, spawnpoint.y, 'characters');
-        //player.tint = spawnpoint.color;
-        player.tint = Math.random() * 0xffffff;
+        player.tint = spawnpoint.color;
+        //player.tint = Math.random() * 0xffffff;
         this.game.physics.enable(player, Phaser.Physics.ARCADE);
         player.body.collideWorldBounds = true;
         player.body.setSize(22, 16, 5, 48);
